@@ -1,0 +1,263 @@
+page{
+  background: #f0f0f0;
+}
+.container{
+  border-top: 1px solid #f0f0f0;
+}
+.cartsNullView{
+  width: 100%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 320px;
+  flex-direction: column;
+}
+.cartsNull{
+  width: 38%;
+}
+.attention{
+  height:36px;
+  width: 100%;
+  background:  #fff4da;
+  line-height: 36px;
+  font-size: 14px;
+  color: #f29629;
+  display: flex;
+  justify-content: space-between;
+}
+.attention>text{
+ margin: 0 15px;
+}
+.shopList{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 4px solid #f0f0f0;
+  overflow: hidden;
+  position: relative;
+  background: white;
+}
+.shopListTitle{
+  width: 100%;
+  height: 45px;
+  margin: 0px 15px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  align-items: center;
+
+}
+.shopListTitle>view{
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid #464646;
+  margin-right: 30px;
+  font-size: 12px;
+  border-radius: 2px;
+}
+.shopItem{
+  display: flex;
+  align-items: center;
+  width: 95%;
+  margin-left: 10px;
+}
+.shopDetail{
+  display: flex;
+  font-size: 15px;
+  width: 88%;
+  border-bottom: 1px solid #f0f0f0;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-left: 10px;
+  overflow: hidden;
+}
+.shopImg{
+  width: 92px;
+  height: 92px;
+  border-radius: 5px;
+  background: #f0f0f0;
+  border: 1px solid #f0f0f0;
+}
+.shopFontInfo{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  height: 92px;
+  justify-content: space-around;
+  width: 60%
+}
+.success{
+  width: 20px;
+  height: 20px;
+  border: 1px solid #cdcdcd;
+  border-radius: 50%;
+}
+.success>icon{
+  position: absolute;
+
+}
+.shopName{
+  width: 410rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.shopNum{
+  font-size: 12px;
+}
+.setNum{
+  display: flex;
+  font-size: 12px;
+}
+.disable{
+ color: #fe8256;
+}
+.setNum>text ,.setNum>input{
+  border-bottom: 1px solid #cdcdcd;
+  border-top: 1px solid #cdcdcd;
+  border-left: 1px solid #cdcdcd;
+  width: 37px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+ 
+}
+.setNum>text:nth-child(1){
+  border-radius: 2px;
+}
+.shopFontInfo .setNum .reduce1{
+  border-bottom: 1px solid #f0f0f0;
+  border-top: 1px solid #f0f0f0;
+  border-left: 1px solid #f0f0f0;
+  width: 37px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 2px;
+}
+.delete{
+  border: 1px solid #cdcdcd;
+  width: 120px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  border-radius: 32px;
+  font-size: 15px;
+  position: relative;
+  margin: 0 auto;
+}
+.mark{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgba(255, 255, 255,.4);
+  top:60px;
+}
+.otherShop{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+}
+.otherShopTitle{
+  height: 66px;
+  width: 94%;
+  display: flex;align-items: center;
+  font-size: 15px;
+}
+.otherShopImg{
+  width: 50px;
+  height: 50px;
+  background: #f0f0f0;
+}
+.otherShopList{
+   display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 92%;
+  padding-bottom: 10px;
+}
+.otherShopItem{
+  width: 48%;
+  margin-bottom: 10px;
+  font-size:0px;
+  display:flex;
+  flex-direction:column;
+
+}
+.otherShopItem>image{
+  width: 100%;
+  height: 160px;
+  border-radius: 5px;
+  border: 1px solid #f0f0f0;
+}
+.otherShopName{
+  font-size:15px;
+  white-space:nowrap;
+  margin-top:10px;
+  width:100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  line-height:20px;
+  display:block;
+
+}
+.otherShopIntroudce{
+  margin-top:5px;
+  font-size:12px;
+  color:#777777;
+  width:100%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  line-height:16px;
+
+}
+.otherShopPrice{
+  font-size:15px;
+  color:red;
+  margin-top:5px;
+  line-height:20px;
+}
+
+.pay{
+  width: 100%;
+  height: 50px;
+  background: #fafafa;
+  border-top: 0.5px solid #dcdcdc;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: #777777;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  z-index: 2;
+}
+.sumPrice{
+  color: red;
+  margin-right:15px; 
+}
+.sumFont{
+  width: 115px;
+  height: 50px;
+  background:linear-gradient( to right,#fe8657,#ff4c4d);
+  line-height: 50px;
+  text-align: center;
+  color: white;
+}
+.moreImage image{
+  width: 360rpx;
+  height: 50rpx;
+  margin-top:30rpx ;
+  margin-bottom: 20rpx;
+}
+.moreImage{
+  width: 100%;
+  text-align: center;
+}

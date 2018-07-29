@@ -1,0 +1,170 @@
+<view class="container">
+  <view class='getType'>
+    <view bindtap='handleToSelectGetType' class="{{selectGetType === 1?'selectGetType':''}}" data-selectGetType="1">送货上门</view>
+    <view bindtap='handleToSelectGetType' class="{{selectGetType === 2?'selectGetType':''}}" data-selectGetType="2">门店自提</view>
+  </view>
+    <!--有收货地址  -->
+   <view class='itemContent' bindtap='changeToAddress' wx:if="{{defaultAddress.memberAddressName}}">
+    <view class='itemInfo'>
+      <view class='itemLeft'>
+        <text>{{defaultAddress.memberAddressName}}</text>  
+        <view class='current' wx:if="{{defaultAddress.memberAddressIsDefault}}">默认</view>
+      </view>
+      <view class='itemCenter'>
+        <text>{{defaultAddress.memberAddressMobile}}</text>
+        <text class='address'>{{defaultAddress.memberAddressProvince}}{{defaultAddress.memberAddressCity}}{{defaultAddress.memberAddressArea}}{{defaultAddress.smallArea}}{{defaultAddress.memberAddressDetail}}</text>
+      </view>
+      
+    </view>
+    <view class='arrow' style="height:8px;width:8px;"></view>
+  </view> 
+  <!--没有收货地址  -->
+   <view class='itemContent' bindtap='changeToAddress' wx:if="{{!defaultAddress.memberAddressName}}">
+     <view class='itemInfo' style='align-items:center' wx:if="{{selectGetType === 1}}"> 请填写收货地址</view>
+      <view class='itemInfo' style='align-items:center' wx:if="{{selectGetType === 2}}"> 请选择自提店地址</view>
+    <view class='arrow' style='height:8px;width:8px;'></view>
+  </view>
+ <image class='addressImg' src='/pages/Img/address.jpg'></image>
+ <view class='attention'>
+  次日达需要在每日22.00前下单
+ </view>
+  <view class='bottomLine'></view>
+  <view class='contentList' wx:if="{{goodsList.length > 0}}">
+    <view class='title'>
+      <view class='titleLeft'>
+        <view></view>
+        <text wx:if="{{selectGetType === 1}}">
+          <text wx:if="{{shopType != 'preSale'}}">次日达</text>
+          <text wx:if="{{shopType == 'preSale'}}">预售发货时间</text>
+        </text>
+         <text wx:if="{{selectGetType === 2}}">门店自提</text>
+      </view>
+      <view class='titleRight'>
+         <view class="picker" wx:if="{{shopType == 'preSale'}}">{{preSaleDeliveryTime}}-20:00</view>
+        <view wx:if="{{selectGetType === 1 && shopType != 'preSale'}}">
+        <view style='display:flex;'>
+          <picker mode="multiSelector" wx:if="{{selectGetType === 1}}" bindchange="handleSureTime"  value="{{timeIndex}}" range="{{sendTime}}">
+            <view class="picker">
+              {{sendTime[0][timeIndex[0]]}} {{sendTime[1][timeIndex[1]]}}
+            </view>
+          </picker>
+        </view>
+        </view>
+        <view class='arrow' style='margin-right:0;'wx:if="{{selectGetType === 1 && shopType != 'preSale'}}"></view>
+      </view>
+    </view>
+    <view class='shopList'>
+      <view class='shopItem' wx:for="{{goodsList}}" wx:key="index" >
+        <image class='shopImg' bindtap='handleToShopDetail' data-goodsId="{{item.productId}}" src="{{imageHost + item.productImagePath}}"></image>
+        <view class='shopInfo'>
+          <view class='shopName'>{{item.productName}}<text style='float:right;margin-right:10px;'>x{{item.productQuantity}}</text></view>
+          <view class='shopNum'>{{item.productUnit}}</view>
+          <view class='shopPrice'  wx:if="{{goodType != 'groupon'}}">¥{{item.productPrice}}</view>
+           <view class='shopPrice' wx:if="{{goodType === 'groupon'}}">¥{{scoreInfo.grouponActivityPrice}}</view>
+        </view>
+      </view>
+      <!-- <view class='shopItem'>
+        <image class='shopImg' bindtap='changeToShopDetail'></image>
+        <view class='shopInfo'>
+          <view class='shopName'>美国华盛顿甜脆红地厘蛇果  <text style='float:right;margin-right:10px;'>x1</text></view>
+          <view class='shopNum'>6个  1.20kg</view>
+          <view class='shopPrice'>¥ 39.9</view>
+        </view>
+      </view> -->
+    </view>
+  </view>
+  <view class='bottomLine' ></view>
+   <view class='contentList' wx:if="{{cycleGoodsList.length>0}}">
+    <view class='title'>
+      <view class='titleLeft'>
+        <view></view>
+        <text>周期购</text>
+      </view>
+      <view class='titleRight'>
+        <text>12月28日|周四 09:00-18:00</text>
+        <view class='arrow' style='margin-right:0px;'></view>
+      </view>
+    </view>
+    <view class='shopList'>
+      <view class='shopItem' wx:for="{{cycleGoodsList}}" wx:key="index" >
+        <image class='shopImg' bindtap='handleToShopDetail' data-index="{{index}}" src="{{'http://47.98.203.166:20110' + item.goodsImagePath}}"></image>
+        <view class='shopInfo'>
+          <view class='shopName'>{{item.goodsName}}<text style='float:right;margin-right:10px;'>x{{item.goodsQuantity}}</text></view>
+          <view class='shopNum'>{{item.goodsUnit}}</view>
+          <view class='shopPrice'>¥{{item.goodsPrice}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='bottomLine'></view>
+   <view class='payInfo' bindtap='handleToCards'  wx:if="{{  shopType != 'groupon' &&  cardsNum > 0}}">
+        <view style='display:flex; align-items: center;font-size:15px;color:#464646;'>
+           优惠劵：{{cardsName}}
+        </view>
+          
+      <view style='' class='canUseCardsNum' >
+        <view>可用优惠劵{{cardsNum}}张</view>
+         <view class='arrow' ></view>
+      </view>
+    </view>
+  <view class='pay'>
+    <view class='payInfo'  bindtap='handleToInvoice'>
+        <view style='display:flex; align-items: center;'>
+              <view>开具发票
+                <text wx:if="{{orderIsInvoice}}">(是)</text>
+                <text wx:if="{{!orderIsInvoice}}">(否)</text>
+              </view>
+        </view>  
+      <view >
+         <view class='arrow' style='float:right;'></view>
+      </view>
+     </view>
+    <view class='payInfo'>
+        配送费 
+        <text>¥{{scoreInfo.saleOrderExpressAmount}}</text>
+    </view>
+    <view class='payInfo' wx:if="{{scoreInfo.saleOrderRewardAmount!=0 && scoreInfo.saleOrderRewardAmount != null && scoreInfo.saleOrderRewardAmount!= 'undefined' }}" >
+        满减金额 
+        <text style='color:#ff4c4d'>-¥{{scoreInfo.saleOrderRewardAmount}}</text>
+    </view>
+    <view class='payInfo'>
+      <text wx:if="{{usePointIs}}">{{scoreInfo.memberPointUse}}积分抵用¥{{scoreInfo.saleOrderPointAmount}}</text>
+      <text wx:if="{{!usePointIs}}">不使用积分</text>
+      <view >
+         <switch checked='{{usePointIs}}' bindchange="handleuserScore"/>
+      </view>
+    </view>
+    <view class='payInfo' style='border-top:1px solid #f0f0f0'>
+      余额抵扣(¥{{scoreInfo.useMemberBalance}})
+      <view >
+         <switch checked='{{selectPay}}' bindtap='selectPay'/>
+      </view>
+    </view>
+    <view class='payInfo' style='border-top:1px solid #f0f0f0'>
+      合计
+      <text>¥{{totalPrice}}</text>
+    </view>
+  </view>
+  <view class='bottomLine' style='height:8px;'></view>
+  <view class='list'  data-pay="1">
+      <view >
+        <text class="icon-wxPay"></text>
+        <text>微信支付</text>
+      </view>
+       <view class='sure'>
+        <icon color="red"  type="success" size="22" class="selectPay}}" />
+       </view>
+  </view>
+   <view class='bottomLogo'>
+        <image  mode='widthFix' style="width:160px;" src="../../Img/copyright.png"></image>
+    </view>
+  <view class='goPay'>
+    <text style='margin-left:10px;'>应付款：¥ {{totalPrice}}</text>
+    <view class='goPayBtn' bindtap="handleCreateOrder">去付款</view>
+  </view>
+  <view class='getUserInfo' wx:if="{{!login}}">
+    <button class='getUserInfoBtn' open-type="getUserInfo" bindgetuserinfo='handlerChangeButton'> 允许授权</button>
+  </view>
+  <view>
+  </view>
+</view>

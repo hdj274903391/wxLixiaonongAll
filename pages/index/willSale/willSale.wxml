@@ -1,0 +1,25 @@
+<view class='container'>
+   <image class='tuiJianBanner'  wx:if="{{banner[0].productBannerImagePath}}" mode='widthFix' src="{{imageHost + banner[0].productBannerImagePath}}"></image>
+  <view class='goodsList'>
+     <view class='goodsItem' wx:for="{{goodsList}}" wx:key="index" bindtap='handleToGoodsDetail' data-goodsId="{{item.productId}}">  
+     <!-- <view class='goodsItem' wx:for="{{goodsList}}" wx:key="index"  data-goodsId="{{item.productId}}">  -->
+      <image mode='widthFix'  lazy-load='true' class='goodsImg'  src="{{imageHost + item.productImagePath }}" ></image>
+      <view class='goodsInfo'>
+        <view style='overflow:hidden'>
+          <view class='goodsName'>{{item.productName}}</view>
+          <view class='goodsTitle'>{{item.productTitle}}</view>
+          <view class='goodsTime' wx:if="{{goodsType == 'preSale'}}">截止日期:{{item.preSaleDeliveryTime}}</view>
+          <view class='goodsTime groupPrice' wx:if="{{goodsType == 'group'}}">单买价¥{{item.productPrice}}</view>
+        </view>
+         <view class='goodsPrice'>
+          <view><text wx:if="{{goodsType == 'group'}}">¥{{item.grouponPrice}}</text><text wx:if="{{goodsType != 'group'}}">¥{{item.productPrice}}</text>
+          <!-- /<text style='font-size:12px;'>{{item.productWeight}}{{item.productUnit}}</text> -->
+          </view>
+          <!-- <view bindtap='handleToNewOrder' class='buyBtn' data-index="{{index}}"  wx:if="{{goodsType == 'group'}}">去开团</view> -->
+           <view  class='buyBtn' data-index="{{index}}"  wx:if="{{goodsType == 'groupon'}}">去参团</view>
+         </view>  
+      </view>
+    </view>
+
+  </view>
+</view>

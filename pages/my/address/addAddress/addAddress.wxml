@@ -1,0 +1,74 @@
+<!--添加收货地址页面  -->
+<view class='container'   wx:if ="{{!upDate}}">
+  <view class='content'>
+    <view class='contentItem'>
+          <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <view class="picker">
+         {{region[0]}}、{{region[1]}}、{{region[2]}}
+        </view>
+      </picker>
+    </view>
+    <view class='contentItem' bindtap='handleToChooseLocation'>
+     {{info.address}}
+    </view>
+    <view class='contentItem'>
+     <input class='input' type="text" bindinput='inputAddressInfo' placeholder-style='color:#454545' placeholder='详细地址,如街道、楼牌号等'> </input>
+    </view>
+    <view class='contentItem'>
+     <input class='input' type="text" bindinput='inputName' placeholder-style='color:#454545' placeholder="姓名"> </input>
+    </view>
+    <view class='contentItem'>
+      <input class='input' type="number" bindblur="hanleOverPhone" bindinput='inputPhone' placeholder-style='color:#454545' placeholder='手机号'> </input>
+    </view>
+  </view>
+  <view class='set' bindtap='selectIcon' >
+  <view class='success' >
+          <icon wx:if="{{selected}}" type="success" size="20" color="red" style='margin-top:19px;'/>
+      </view>
+    设为默认地址
+  </view>
+  <view class='bottom'>
+    <view class='sure'  bindtap='handleKeep'>保存</view> 
+  </view>
+  
+  <!-- <view class='bottom'>
+    <view  class='addAddress'>保存</view>
+  </view> -->
+</view>
+<!--修改收货地址页面  -->
+<view class='container'  wx:if ="{{upDate}}">
+  <view class='content'>
+    <view class='contentItem'>
+          <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <view class="picker">
+        省、市、县: {{region[0]}}、{{region[1]}}、{{region[2]}}
+        </view>
+      </picker>
+    </view>
+     <view class='contentItem' bindtap='handleToChooseLocation'>
+        <view class='contentItemView'>
+         定位地址:{{info.address}}
+        </view>
+    
+    </view>
+    <view class='contentItem'>
+     详细地址:<input class='input' type="text" bindinput='inputAddressInfo' placeholder='详细地址,如街道、楼牌号等' value='{{addressInfo.memberAddressDetail}}'> </input>
+    </view>
+    <view class='contentItem'>
+     姓名:<input class='input' type="text" bindinput='inputName'  placeholder-style='color:#454545' value='{{addressInfo.memberAddressName}}'> </input>
+    </view>
+    <view class='contentItem'>
+      号码:<input class='input' type="number" bindblur='hanleOverPhone' bindinput='inputPhone'  placeholder-style='color:#454545' value='{{addressInfo.memberAddressMobile}}'> </input>
+    </view>
+  </view>
+  <view class='set' bindtap='selectIcon' >
+  <view class='success' >
+          <icon wx:if="{{selected}}" type="success" size="20" color="red" style='margin-top:19px;'/>
+      </view>
+    设为默认地址
+  </view>
+  
+   <view class='bottom'>
+    <view class='sure'  bindtap='handleUpdate' >保存</view>  
+  </view>
+</view>

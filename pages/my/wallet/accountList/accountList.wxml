@@ -1,0 +1,16 @@
+<view class='container'>
+  <view class='contentList'>
+    <view class='contentItem' wx:for="{{accountList}}" wx:key="index">
+      <view class='itemContent'  >
+        <view class='itemTitle'  wx:if="{{item.memberPointRecordType ==='0' }}">增加</view>
+        <view class='itemTitle'  wx:if="{{item.memberPointRecordType ==='1' }}">支出</view>
+        <view class='itemTime'>{{item.systemCreateTime}}</view>
+      </view>
+      <view  class="itemPrice1" >
+        <text wx:if="{{item.memberPointRecordType ==='0' }}" style='color: #5ac72f'>+</text> 
+        <text wx:if="{{item.memberPointRecordType ==='1'}}" style='color:#ff4c4d'>-</text>
+        {{item.memberPointChangePoint}}
+      </view>
+    </view>
+  </view>
+</view>

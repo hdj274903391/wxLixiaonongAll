@@ -1,0 +1,33 @@
+<view class='container'>
+ <form class='form' bindsubmit="formSubmit">
+  <view class='select' bindtap='typeSelect'>
+    <text style='margin-left:15px;'>请选择反馈类型({{suggestTypeItem[selectTypeId].name}})</text>
+    <view class='arrow'></view>
+  </view>
+  <view class='photoInput'>
+    <input type="number" bindinput='handlePhoneNum' placeholder-style='color:#cdcdcd;' placeholder='请填写手机号码，方便我们与你联系'></input>
+  </view>
+  <textarea class='textarea' placeholder-style='color:#cdcdcd;' placeholder='对我们的网站、商品、服务，您还有什么建议？'  bindinput='textareaInput'></textarea>
+  <text class='photoTitle'>上传照片(最多4张)</text>
+   <view class='addImg'>
+        <image class='addBtn' bindtap='previewImage' src="/pages/Img/addImg.png"></image>
+      </view>
+      <view style='width:100%;display:flex; justify-content: center;'>
+         <view class="tui-content">
+          <image class="tui-preview-img" mode='scaleToFill' wx:for="{{previewImageArr}}" bindtap="changePreview" src="{{item}}" wx:key="{{index}}"></image>
+        </view>
+
+      </view>
+    <view class='suggestType' wx:if="{{suggestTypeDisplay}}">
+      <view class='suggestTypeList'>
+        <view class="{{item.select?'suggestTypeItem1':'suggestTypeItem'}}" wx:for="{{suggestTypeItem}}" wx:key="index"  bindtap='suggestSelect' data-id="{{index}}">
+        {{item.name}}
+        </view>
+      </view>
+
+    </view>
+   <view class='bottom'> 
+        <button class='submit' form-type="submit">提交</button>
+  </view>
+ </form>
+</view>

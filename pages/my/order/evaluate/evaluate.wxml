@@ -1,0 +1,43 @@
+<form>
+  <view class='container'>
+    <view class='all' wx:for="{{goodsList}}" wx:for-index="current" wx:key="current">
+      <view class='content'>
+        <view class='shopInfo'>
+          <image class='shopImg' src="{{imageHost + item.productImagePath}}"></image>
+          <view style='margin-left:15px;height:40px; display: flex;flex-direction: column;justify-content: space-between;'>
+            <text class='shopName'>{{item.productName}}</text>
+            <view>{{item.productPrice}}</view>
+          </view>
+        </view>
+      </view>
+      <view class='scale'>
+          <text>评分</text>
+          <view style='width:110px;height:20px;margin:0 10px;line-height:20px;'>
+              <text class="icon-activeStar"  wx:for="{{item.activeStar}}" wx:key="index" wx:for-item="itemsActiver" data-active="active" data-current="{{current}}" data-index="{{index}}" data-num="{{index}}" bindtap='changeScale'></text>
+              <text class="icon-star"  wx:for="{{5 - item.activeStar}}" wx:key="index" data-active="activen"   wx:for-item="items" data-current="{{current}}" data-index="{{index}}" data-num="{{item.activeStar + index}}" bindtap='changeScale'></text>
+          </view>
+          <text style='margin-left:5px;'>{{item.Satisfaction}}</text>
+      </view>
+      <textarea placeholder='您对本商品还有什么建议，可以告诉我们哦' bindinput='handleInputContent' data-current="{{current}}" placeholder-style="color:#ddd;" class='textarea'></textarea>
+      <view class='addImg'>
+       
+        <view class="tui-content">
+          <image class='addBtn' bindtap='previewImage' src="/pages/Img/addImg.png" data-current="{{current}}" ></image>
+          <image class="tui-preview-img" wx:for="{{item.previewImageArr}}" bindtap="changePreview" src="{{item}}" wx:key="{{index}}"></image>
+        </view>
+      </view>
+      
+      
+    </view>
+    <view class='bottom'> 
+        <view class='anonymousView'>
+          <view class='anonymousBtn' bindtap='handleIsAnonymous'>
+            <text class='icon-duigou' wx:if="{{saleOrderProductCommentIsAnonymous}}"></text>
+          </view>
+          <view>匿名</view>
+        </view>
+        <view class='submit' bindtap='handleSubmit'>提交</view>
+      </view>
+  </view>
+</form>
+

@@ -1,0 +1,10 @@
+<view  class='container'>
+  <view class='content'>
+    <view style='font-size:24px;font-weight:500;margin-bottom:5px;'>{{score}}分</view>
+    <view style='color:#969696;font-size:15px;'>满额积分自动抵换现金</view>
+  </view>
+</view>
+<view class='history' bindtap='handleToAccountList'>积分明细</view>
+  <view class='bottom'>
+    <view class='recharge' bindtap='handleToIndex'>去购物</view>
+  </view>

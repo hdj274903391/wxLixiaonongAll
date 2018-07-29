@@ -1,0 +1,24 @@
+.container{
+ height: 100hv;
+}
+.logo{
+  width: 90px;
+  height: 90px;
+  border-radius: 5px;
+  background: #f0f0f0;
+  margin: 250rpx 0;
+
+}
+.bottom{
+  width: 120px;
+  height: 37px;
+  line-height: 37px;
+  text-align: center;
+  border: 1px solid #cdcdcd;
+  font-size: 15px;
+  margin-top: 20px;
+}
+.info{
+  font-size: 12px;
+  margin-top: 40px;
+}

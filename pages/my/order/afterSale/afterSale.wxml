@@ -1,0 +1,33 @@
+<view class="container">
+  <view class="contentList"  >
+      <!-- <view class='cartsNullView' wx:if="{{orderList.length === 0}}">
+          <image mode='widthFix' src='../../Img/orderNull.png' class='cartsNull'></image>
+          <text style='font-size:14px;color:#808080;margin-top:20px;'>还没有相关订单哦</text>
+       </view> -->
+        <view class='orderItem'  wx:for="{{orderList}}" wx:key="{{item.orderId}}">
+          <view class='ordertitle'>
+            <text>订单编号: {{item.saleOrderId}}<text wx:if="{{item.saleOrderReceiveType == '0'}}">(自提)</text></text>
+           
+          </view>
+          <view class='shop' bindtap='changeToWillPay' data-orderStatus="{{item.saleOrderStatus}}" data-saleOrderId="{{item.saleOrderId}}" >
+            <view style='width:270px; overflow: hidden;white-space:nowrap;'>
+              <image class='shopImg' wx:for="{{item.saleOrderProductList}}" wx:key="index" src="{{imageHost + item.productImagePath}}"></image>
+              <view wx:if="{{item.imageList === 1}}" style='font-size:15px;'> 
+                <text class='shopName'>{{item.saleOrderProductList[0].productName}}</text>
+                 <text style='margin-right:15px'>{{item.saleOrderProductList[0].productUnit}}</text> 
+              </view>
+            </view>
+            <view class='shopNum'> 
+              <view style='margin-right:15px;white-space:nowrap;'>X{{item.saleOrderTotalQuantity}}</view>
+              <view style='margin-right:15px;white-space:nowrap;'>售后中</view>
+            </view>
+          </view>
+          <view class='pay'>
+            <text>应付：¥ {{item.saleOrderPayAmount}}</text>
+          </view>
+        </view>
+      </view>
+      <view class='bottomLogo' style='bottom:0;'>
+            <image  mode='widthFix' style="width:160px;" src="../../../Img/copyright.png"></image>
+      </view> 
+</view>

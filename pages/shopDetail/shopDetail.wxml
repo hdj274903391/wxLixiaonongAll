@@ -1,0 +1,257 @@
+<import src="../../wxParse/wxParse.wxml"/>
+<view class="container">
+
+  <swiper class='banner' autoplay="true" style='height:{{bannerImgWidth}}px' interval="2000" circular="true" indicator-dots="true" indicator-color="#fff" indicator-active-color="#ff4c4d">
+      <swiper-item wx:for="{{goods.productImageList}}" wx:key="index" >
+        <image mode="widthFix"  lazy-load='true' style='transition: opacity 1s linear 2s;height:414px;'  src="{{imageHost + item.productImagePath}}"> </image>
+      </swiper-item>
+  </swiper>
+  <!--预售  -->
+     <view class='bannerBottomWillSell' wx:if="{{productType == 'preSale' }}">
+    <view class='bannerBottomPriceSell'>
+      ¥{{goods.productPrice}}/<text style='font-size:12px;'>{{goods.productUnit}}</text>
+      <!-- <text class='bannerBottomCanclePriceSell' style=''>{{goods.productMarketPrice}}</text> -->
+    </view>
+    <view class='bannerBottomTimeSell'>
+      <view class='bannerBottomTimeTitleSell'>距离预售结束还剩:</view>
+      <view class='bannerBottomTimeInfoSell'>
+      {{overTime}}
+      </view>
+    </view>
+  </view>
+
+  <view  class='preSaleGoodsInfo'  wx:if="{{productType == 'preSale'}}">
+    <view class='viewBetween' style='width:100%;margin:0;'>
+      <view style='display:flex; align-items: center;'><view style="" class='goodsName'>{{goods.productName}}</view></view>
+      <button open-type="share"  bindtap='onShareAppMessage' class='icon-share' style='font-size:30px;'></button>
+    </view>
+  
+  <view class='goodsNameSell' style='margin:0;'>{{goods.productTitle}}</view>
+ 
+  </view>
+  
+  <!--团购  -->
+   <view class='bannerBottomWillSell' wx:if="{{productType == 'groupon'}}">
+   
+    <view class='bannerBottomPriceSell'>
+       ¥{{goods.grouponPrice}}/<text style='font-size:12px;'>{{goods.productUnit}}</text>    
+      <text class='bannerBottomCanclePriceSell' style=''>¥{{goods.productPrice}}</text>
+    </view>
+    <view class='bannerBottomTimeSell'>
+      <view class='bannerBottomTimeTitleSell'>距离拼团结束还剩:</view>
+      <view class='bannerBottomTimeInfoSell'>
+      {{overTime}}
+      </view>
+    </view>
+  </view>
+    <view  class='preSaleGoodsInfo'  wx:if="{{productType == 'groupon'}}">
+    <view class='viewBetween' style='width:100%;margin:0;'>
+      <view style='display:flex; align-items: center;'><view style="" class='goodsName'>{{goods.productName}}</view></view>
+      <button open-type="share"  bindtap='onShareAppMessage' class='icon-share' style='font-size:30px;'></button>
+    </view>
+  
+  <view class='goodsNameSell' style='margin:0;'>{{goods.productTitle}}</view>
+ 
+  </view>
+  <view class='group' wx:if="{{productType == 'groupon' &&  groupList.length>0}}">
+    <view class='groupTitle' wx:if="{{groupNum > 0}}">
+      <view style='margin-left:15px;'>已有{{groupNum}}人拼团</view>
+      <!-- <view style='border-left:1px solid #cdcdcd;margin-left:5px;padding-left:5px;'></view> -->
+    </view>
+    <view class='groupList'>
+      <scroll-view scroll-y="true" style='width:100%;height:{{groupListHeight}}px;'>
+        <view class='groupItem' wx:for="{{groupList}}" wx:key="index">
+          <view class='groupItemLeft'>
+            <image class='groupPhoto' lazy-load='true' src="{{item.memberAvatarPath}}"></image>
+            <view class='groupName'>{{item.memberNickName}}的团</view>
+          </view>
+          <view  class='groupItemRight'>
+            <view class='groupItemInfo'>
+              <view>还差{{item.grouponActivityMemberLimit - item.grouponActivityMemberCount}}人成团</view>
+              <view class='groupItemInfoTime'>还剩{{item.grouponActivityExpireTime}}</view>
+            </view>
+            <!-- <view class='groupItemBtn' bindtap='handleGoGroup' data-gouponActivityId="{{item.grouponActivityId}}">去参团</view> -->
+            <view class='groupItemBtn' bindtap='handleChangeSku' data-gouponActivityId="{{item.grouponActivityId}}" data-groupTypeNum="0">去参团</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <!--正常商品  -->
+   <view class='bannerBottom' wx:if="{{productType == 'normal' || productType == 'reward'}}">
+    <view class='viewBetween'>
+      <view style='display:flex; align-items: center;'><view style="" class='goodsName'>{{goods.productName}}<text wx:if="{{ productType == 'reward'}}" style='font-size:15px;font-weight:500;'>({{goods.rewardName}})</text></view></view>
+      <button open-type="share"  bindtap='onShareAppMessage' class='icon-share' style='font-size:30px;'></button>
+    </view>
+    <view class='goosIntroudce' style=''>{{goods.productTitle}}</view>
+    <view class='viewBetween'>
+      <view class='sprice'>¥{{goods.productPrice}}
+      <!-- /<text style="font-size:15px;">{{goods.productUnit}}</text> -->
+      </view>
+      <view class='history'>已售{{goods.productSaleCount}}份</view>
+    </view>
+  </view> 
+  <view class='getCards'  bindtap='handleCardsListTrue'  wx:if="{{productType != 'groupon' && productType != 'preSale' && cardsContent.length>0}}">
+    <view class='getCardsTitle'>
+      领劵： <text class='getCardsDetail'><text wx:for="{{cardsContent}}" wx:key="index">{{item.couponDescription}},</text></text> 
+    </view>
+    <view class='arrow' style='margin:0;'></view>
+  </view>
+ <view class='evaluate'  wx:if="{{evaluationList.length > 0}}" style='justify-content:flex-end;display:flex;' bindtap='handleToEvaluate'>
+   <view style='width:96%;height:100%;align-items:center;display:flex;justify-content:space-between;border-bottom:1px solid #dcdcdc;'>
+     <view>评价({{evaluationNum}})</view>
+    <view class='evaluateRight' >
+      <view class='evaluateNum'>{{evaluationRate}}% 好评</view>
+      <view class='arrow'></view>
+    </view>
+   </view>
+  </view> 
+  <view class='evaluateList' wx:if="{{evaluationList.length > 0}}">
+    <view class='evaluateItemInfo'>
+      <image class='ItemPhoto' src='{{evaluationList[0].memberAvatarPath}}' lazy-load='true'></image>
+      <view class='ItemInfoDetail'>
+        <view style='color:#454545;height:20px;'>
+          <text class='evaluateListMemberName'>{{evaluationList[0].memberNickName}}</text>
+          <view class='star'>
+              <text class='.icon-activeStar' wx:for="{{evaluationList[0].saleOrderProductCommentSatisfaction}}" wx:key="{{index}}"></text>
+              <text class='.icon-star' wx:for="{{ 5 - evaluationList[0].goodsSatisfactionDegree}}" wx:key="{{index}}"></text>  
+          </view>
+        </view>
+        <view style='font-size:10px;color:#464646;'>{{evaluationList[0].systemCreateTime}}</view>
+      </view>
+    </view>
+    <text class='evaluateContent'>{{evaluationList[0].saleOrderProductCommentContent}}</text>
+    <view style='display:flex;width:100%; flex-wrap: wrap;'>
+         <image class='evaluateImg'   lazy-load='true' wx:for="{{evaluationList[0].saleOrderProductCommentImageList}}" wx:key="index" src='{{imageHost + item.saleOrderProductCommentImagePath}}'></image> 
+    </view>
+  </view>
+  <view class='tuijian'>
+    <view class='tuijanTitle'>
+        <view bindtap='changeTuijian' class="{{tuijian==1?'tuijanTitleSelect':''}}" data-tuijian = "1" >大家都在看</view>
+        <!-- <view  bindtap='changeTuijian' class="{{tuijian==2?'tuijanTitleSelect':''}}" data-tuijian = "2">24小时热销</view> -->
+    </view>
+    <scroll-view class='tuijianLists' scroll-x="true">
+      <view class='tuijianItem' wx:for="{{shopsList}}" wx:key="{{index}}" bindtap='handleGoodsDetail' data-goodsId="{{shopsList[index].productId}}">
+        <image class='tuijianImg'  lazy-load='true' src="{{imageHost + item.productImagePath }}"></image>
+        <view class='tuijianName'>{{item.productName}}</view>
+        <view class='tuijianPrice'>¥{{item.productPrice}}</view>
+      </view>
+    </scroll-view>
+  </view>  
+  <!-- <button bindtap='onShareAppMessage' open-type="share">转发</button> -->
+  <!-- <image style='width:100%;' src="{{'http://47.98.203.166:20110' + goods.goodsDetailStringList[0].goodsDetailPath}}">
+  </image> -->
+  <template is="wxParse" wx:if="{{productContent.nodes}}" data="{{wxParseData:productContent.nodes}}"/>
+ 
+  <view class='mark'wx:if="{{cardsList}}" >
+    <view style='width:100%;height:50vh' bindtap='handleCardsListDisplay'></view>
+    <view class='cards' bindtap='handleCardsListTrue'>
+      <view class='cardsTitle'>领取优惠券</view>
+      <view class='cardsList'>
+      <scroll-view scroll-y="true" style="height: 200px;width:100%;" >
+        <view class='cardsItem' wx:for="{{cardsContent}}" wx:key="index">
+          <image mode='widthFix'  lazy-load='true' class='cardsItemImg' src="{{imageHost + item.couponImagePath}}"></image>
+          <view class='carsItemRight'>
+            <view class='cardsItemInfo'>
+              <view >{{item.couponName}}</view>
+              <view class='cardsItemTime'>{{item.couponValidTime}}—— {{item.couponExpireTime}}</view>
+            </view>
+            <view style='font-size:15px;margin-right:20px;' bindtap='handleReceiveCards'  data-couponId="{{item.couponId}}">领取</view>
+          </view>
+      </view>
+      </scroll-view>
+     <!-- <view class='markBottom'>
+        完成
+      </view> -->
+  </view>
+    </view>
+  </view>
+   <view class='bottom'  wx:if="{{productType == 'preSale'}}" >
+    <view class='bottomService'>
+      <button class="kf_button" style='height:30px;' open-type="contact" session-from="weapp">
+        <text class='icon-service'></text>
+      </button>
+    </view>
+    <view class='bottomBuildGroup' bindtap='handleChangeGoodsNumDisplay' style='background:linear-gradient(to right,#fe8657,#ff4c4d);' >
+        <view>马上抢购</view>
+    </view>
+  </view>
+  <view class='bottom'  wx:if="{{productType == 'groupon'}}" >
+    <view class='bottomService'>
+     <button class="kf_button" style='height:30px;' open-type="contact" session-from="weapp">
+      <text class='icon-service'></text>
+    </button>
+      <text style='font-size:9px;'>联系客服</text>
+    </view>
+    <!-- <view class='bottomSelfPay' bindtap='handleToNewOrderNormal'> -->
+     <view class='bottomSelfPay' bindtap='handleChangeSku'  data-groupTypeNum="1">
+      <view style='font-weight:600'>¥{{goods.productPrice}}</view>
+      <view>单独购买</view>
+    </view>
+    <!-- <view class='bottomBuildGroup'  bindtap='handleToNewOrder' data-gouponactivityid=""> -->
+     <view class='bottomBuildGroup'  bindtap='handleChangeSku' data-gouponactivityid="" data-groupTypeNum="2">
+      <view style='font-weight:600'>¥{{goods.grouponPrice}}</view>
+        <view>我要开团</view>
+    </view>
+  </view>                                                                                                                             
+  <view class='containerBottom' wx:if="{{productType == 'normal' ||  productType == 'reward'}}">
+    <view class='containerBottomImg'  style='display:flex;'>
+    <button class="kf_button" open-type="contact" session-from="weapp">
+      <text class='icon-service'></text>
+    </button>
+
+    </view>
+    <view  class='containerBottomImg' style='border-left:1px solid #dfdcdc'>
+      <view class='icon-shopCars'bindtap='changeToShopCars' style='font-size:22px;width:100%;height:100%;text-align:center;line-height:48px;position:relative'>
+         <view class='redPoint' wx:if="{{cartsNum > 0}}">{{cartsNum}}</view>
+      </view>
+    </view>
+    <view class='willPay' bindtap='addToCar'>加入购物车</view>
+  </view> 
+  <view class='mark' style='z-index:1200' wx:if="{{changeGoodsNumDisplay}}">
+    <view style='width:100%;height:50vh;' bindtap='handleChangeGoodsNumDisplay'></view>
+    <view class='goodsSkuView'>
+      <view class='goodsSkuViewTop'>
+        <image mode='widthFix' src="{{ imageHost +goods. productImagePath}}"></image>
+        <view style='margin-left:10px;'>
+          <view style='margin-bottom:20px;'>{{goods.productName}}</view>
+          <view style='color:#ff4c4d'>¥{{goods.productSkuList[skuIndex].productSkuPrice}}</view>
+          <view>已选择{{goods.productSkuList[skuIndex].productUnit}}</view>
+        </view>
+      </view>
+      <view class='goodsSkuList'>
+        <view wx:for="{{goods.productSkuList}}"  class='{{skuIndex === index ? "goodsSkuItem1" : "goodsSkuItem" }}' wx:key="index" data-index="{{index}}" bindtap='selectSku'> {{item.productSkuUnit}}</view>
+      </view>
+      <view class='goodsSkuNum'>
+        <text>购买数量</text>
+       <view class='setNum'>
+          <text bindtap='numReduce' data-index="{{index}}">-</text>
+          <input type="number" bindinput='handLeChangeInput' value='{{goodsNum}}' style='z-index:1;' data-index="{{index}}"></input>
+          <!-- <text>{{item.goodsQuantity}}</text> -->
+          <text style='border-right: 1px solid #cdcdcd' data-item="{{item}}"  bindtap='numAdd'  data-index="{{index}}">+</text>
+      </view>
+      
+      </view>
+      <view class='skuBtn' bindtap='skuAddToCar' wx:if="{{productType != 'preSale'}}">马上购买</view>
+      <view class='skuBtn' bindtap='handleToNewOrder' wx:if="{{productType == 'preSale'}}">马上抢购</view>
+    </view>
+  </view>
+  <!--团购修改数量  -->
+  <view class='mark' style='z-index:1200' wx:if="{{groupNumView}}">
+    <view style='width:100%;height:70vh;' bindtap='handleChangeSkuNone'></view>
+    <view class='goodsSkuView' style='height:30vh'>
+      <view class='goodsSkuNum'>
+        <text>购买数量</text>
+       <view class='setNum'>
+          <text bindtap='numReduce' data-index="{{index}}">-</text>
+          <input type="number" bindinput='handLeChangeInput' value='{{goodsNum}}' style='z-index:1;' data-index="{{index}}"></input>
+          <!-- <text>{{item.goodsQuantity}}</text> -->
+          <text style='border-right: 1px solid #cdcdcd' data-item="{{item}}"  bindtap='numAdd'  data-index="{{index}}">+</text>
+      </view>
+      </view>
+      <view class='skuBtn' bindtap='handleGroupPay' >马上购买</view>
+      
+    </view>
+  </view>
+
+</view>

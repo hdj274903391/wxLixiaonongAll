@@ -1,0 +1,261 @@
+
+<view class='container'>
+  <view class='navigation'>
+
+      <view bindtap="changeNavigation" class="{{showfilterindex==0?'navigationItemActive':'navigationItem'}}"  data-findex="0">全部</view>
+       <view bindtap="changeNavigation" class="{{showfilterindex==1?'navigationItemActive':'navigationItem'}}"  data-findex="1">待付款</view>
+      <view bindtap="changeNavigation" class="{{showfilterindex==2?'navigationItemActive':'navigationItem'}}"  data-findex="2">待发货</view>
+      <view bindtap="changeNavigation" class="{{showfilterindex==3?'navigationItemActive':'navigationItem'}}"  data-findex="3">待收货</view> 
+      <view bindtap="changeNavigation" class="{{showfilterindex==4?'navigationItemActive':'navigationItem'}}"  data-findex="4">待评价</view> 
+   </view>
+  <!-- 全部 -->
+  <swiper current='{{showfilterindex}}' interval="2000" skip-hidden-item-layout="true" class='swiper' style='height:{{swiperHeight}}px;' bindchange="handleChangeNavigation">
+    <swiper-item class="swiperItem" >
+        <view class='contentList' >
+      <!-- <view class='cartsNullView' wx:if="{{orderList.length === 0}}">
+          <image mode='widthFix' src='../../Img/orderNull.png' class='cartsNull'></image>
+          <text style='font-size:14px;color:#808080;margin-top:20px;'>还没有相关订单哦</text>
+       </view> -->
+        <view class='orderItem' wx:for="{{orderList}}" wx:key="{{item.orderId}}">
+          <view class='ordertitle'>
+            <text>订单编号: {{item.saleOrderId}}<text wx:if="{{item.saleOrderReceiveType == '0'}}">(自提)</text></text>
+            <view bindtap="handleCancleOrder" data-orderId="{{item.saleOrderId}}" data-index="{{index}}" wx:if="{{item.saleOrderStatus == 0}}">取消订单</view>
+          </view>
+          <view class='shop' bindtap='changeToWillPay' data-saleOrderId="{{item.saleOrderId}}" data-orderStatus="{{item.saleOrderStatus}}">
+            <view style='width:270px;' class='orderItemImageList'>
+              <image class='shopImg' wx:for="{{item.saleOrderProductList}}" wx:key="index" src="{{imageHost + item.productImagePath}}"></image>
+              <view wx:if="{{item.imageList === 1}}" style='font-size:15px;'> 
+                <text class='shopName'>{{item.saleOrderProductList[0].productName}}</text>
+                 <text style='margin-right:15px'>{{item.saleOrderProductList[0].productUnit}}</text> 
+              </view>
+            </view>
+              <view class='shopNum'> 
+                <text>x{{item.saleOrderTotalQuantity}}</text>
+                <view class='{{ item.saleOrderStatus == 6?"greenColor":"greenRed" }}'>{{
+                    item.saleOrderStatus == 0 ? '待付款' :
+                    item.saleOrderStatus == 1 ? '待发货' :
+                    item.saleOrderStatus == 2 ? '待收货' :
+                    item.saleOrderStatus == 3 ? '待评价' :
+                    item.saleOrderStatus == 4 ? '售后中' :
+                    item.saleOrderStatus == 5 ? '已取消' :
+                    item.saleOrderStatus == 6 ? '已完成' : ''}}
+                </view>
+            </view>
+          </view>
+          <view class='pay' wx:if="{{item.saleOrderStatus == 0}}">
+            <text>应付：¥ {{item.saleOrderPayAmount}}</text>
+            <view class='payBtn'  bindtap='handleToPay' data-saleOrderId="{{item.saleOrderId}}">付款 {{item.saleOrderPayExpireTime}}            </view>
+          </view>
+          <view class='pay' wx:if="{{item.saleOrderStatus == 1}}">
+            <text>合计：¥ {{item.saleOrderPayAmount}}</text>
+            <view class='willGetBtn'>
+              <view class='logisticsBtn'  bindtap='handleSendBtn'  data-saleOrderId="{{item.saleOrderId}}">提醒发货</view>
+              <!-- <view class='logisticsBtn' bindtap='getTime'>拼团详情</view>  -->
+               <view class='logisticsBtn'  wx:if="{{item.saleOrderType === 'groupon'}}" bindtap='handleGroupDetail' data-saleOrderId="{{item.saleOrderId}}">拼团详情</view> 
+            </view>
+          </view>
+          <view class='pay' wx:if="{{item.saleOrderStatus == 2}}">
+            <text>合计：¥ {{item.saleOrderPayAmount}}</text>
+            <view class='willGetBtn'>
+              <!-- <view class='logisticsBtn'>查看物流</view> -->
+              <view class='payBtn' bindtap='handleGetBtn' data-saleOrderId="{{item.saleOrderId}}">确认收货</view>
+            </view>
+          </view>
+          <view class='pay' wx:if="{{item.saleOrderStatus == 3}}">
+            <text>应付：¥ {{item.saleOrderPayAmount}}</text>
+            <view class='willEvaluateBtn'>
+                <!-- <view class='againBuy'>查看物流</view> -->
+                <view class='sureBtn' bindtap='changeToEvaluate' data-index="{{index}}">评价</view>
+            </view>
+          </view>
+          <view class='pay' wx:if="{{item.saleOrderStatus == 5}}">
+            <text>应付：¥ {{item.saleOrderPayAmount}}</text>
+            <view class='willEvaluateBtn'>
+                <!-- <view class='againBuy'>查看物流</view> -->
+                <view class='logisticsBtn'  bindtap='changeToWillPay' data-saleOrderId="{{item.saleOrderId}}" data-orderStatus="{{item.saleOrderStatus}}">再次购买</view>
+            </view>
+          </view>
+          <view class='pay' wx:if="{{item.saleOrderStatus == 4}}">
+            <text>应付：¥ {{item.saleOrderPayAmount}}</text>
+            <!-- <view class='willEvaluateBtn'>
+               
+                <view class='logisticsBtn' data-index="{{index}}">再次购买</view>
+            </view> -->
+          </view>
+          <view class='pay' wx:if="{{item.saleOrderStatus == 6}}">
+            <text>应付：¥ {{item.saleOrderPayAmount}}</text>
+            <view class='willEvaluateBtn'>
+                <!-- <view class='againBuy'>查看物流</view> -->
+                <view class='sureBtn' bindtap='handleDelateOrder' data-index="{{index}}" data-saleOrderId="{{item.saleOrderId}}">删除订单</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='bottomLogo' style='position:absolute;bottom:0;'>
+            <image  mode='widthFix' style="width:160px;" src="../../Img/copyright.png"></image>
+      </view> 
+    </swiper-item>   
+    <swiper-item class="swiperItem" >
+      
+    <!--待付款  -->
+   <view class="contentList"  >
+       <!-- <view class='cartsNullView' wx:if="{{orderList.length === 0}}">
+          <image mode='widthFix' src='../../Img/orderNull.png' class='cartsNull'></image>
+          <text style='font-size:14px;color:#808080;margin-top:20px;'>还没有相关订单哦</text>
+       </view>  -->
+        <view class='orderItem'  wx:for="{{orderList}}" wx:key="{{item.orderId}}">
+          <view class='ordertitle'>
+            <text>订单编号: {{item.saleOrderId}}<text wx:if="{{item.saleOrderReceiveType == '0'}}">(自提)</text></text>
+            <view bindtap="handleCancleOrder" data-orderId="{{item.saleOrderId}}" data-index="{{index}}">取消订单</view>
+          </view>
+          <view class='shop' bindtap='changeToWillPay' data-saleOrderId="{{item.saleOrderId}}" data-orderStatus="0">
+            <view style='width:270px;' class='orderItemImageList'>
+              <image class='shopImg' wx:for="{{item.saleOrderProductList}}" wx:key="index" src="{{imageHost + item.productImagePath}}"></image>
+              <view wx:if="{{item.imageList === 1}}" style='font-size:15px;'> 
+                <text class='shopName'>{{item.saleOrderProductList[0].productName}}</text>
+                 <text style='margin-right:15px'>{{item.saleOrderProductList[0].productUnit}}</text> 
+              </view>
+            </view>
+            <view class='shopNum'> 
+                <view >X{{item.saleOrderTotalQuantity}}</view>
+                <view >待付款</view>
+            </view>
+          </view>
+          <view class='pay'>
+            <text>应付：¥ {{item.saleOrderPayAmount}}</text>
+            <view class='payBtn' bindtap='handleToPay' data-saleOrderId="{{item.saleOrderId}}" >付款{item.saleOrderPayExpireTime}}</view>
+          </view>
+        </view>
+      </view>
+      <view class='bottomLogo' style='position:absolute;bottom:0;'>
+            <image  mode='widthFix' style="width:160px;" src="../../Img/copyright.png"></image>
+      </view> 
+    </swiper-item>
+    <swiper-item class="swiperItem">
+    <!--待发货  -->
+      <view class="contentList"  >
+        <!-- <view class='cartsNullView' wx:if="{{orderList.length === 0}}">
+          <image mode='widthFix' src='../../Img/orderNull.png' class='cartsNull'></image>
+          <text style='font-size:14px;color:#808080;margin-top:20px;'>还没有相关订单哦</text>
+       </view> -->
+        <view class='orderItem' wx:for="{{orderList}}" wx:key="{{item.orderId}}">
+          <view class='ordertitle'>
+            <text>订单编号: {{item.saleOrderId}}<text wx:if="{{item.saleOrderReceiveType == '0'}}">(自提)</text></text>
+          </view>
+          <view class='shop' bindtap='changeToWillPay' data-saleOrderId="{{item.saleOrderId}}" data-orderStatus="1">
+            <view style='width:270px;' class='orderItemImageList'>
+              <image class='shopImg' wx:for="{{item.saleOrderProductList}}" wx:key="index" src="{{imageHost + item.productImagePath}}"></image>
+              <view wx:if="{{item.imageList === 1}}" style='font-size:15px;'> 
+                <text class='shopName'>{{item.saleOrderProductList[0].productName}}</text>
+                 <text>{{item.saleOrderProductList[0].productUnit}}</text> 
+              </view>
+            </view>
+            <view class='shopNum'> 
+              <text>x{{item.saleOrderTotalQuantity}}</text>
+              <text style='color:#FF4C4D'>待发货</text>
+            </view>
+          </view>
+          <view class='pay'>
+            <text>合计：¥ {{item.saleOrderPayAmount}}</text>
+            <view class='willGetBtn'>
+              <view class='logisticsBtn' bindtap='handleSendBtn'  data-saleOrderId="{{item.saleOrderId}}">提醒发货</view>
+               <view class='logisticsBtn' bindtap='handleGroupDetail'data-saleOrderId="{{item.saleOrderId}}" wx:if="{{item.saleOrderType === 'groupon'}}">拼团详情</view> 
+            </view>
+          </view>
+        </view>
+        <view class='time'wx:if="{{getTime}}">
+          <view class='timeContent'>
+            <view class='timeTitle'><text>送达日历</text><text style='margin-right:10px;' bindtap='getTime'>取消</text></view>
+            <view class='timeList'>
+              <view class="{{item.choose?'timeItem1':'timeItem'}}" wx:for="{{getTimeList}}" wx:key="{{index}}" bindtap='chooseTime' data-index="{{index}}">
+                <text class='icon-shopCars'></text>
+               <view class='timeInfo'>{{item.time}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='bottomLogo' style='position:absolute;bottom:0;'>
+            <image  mode='widthFix' style="width:160px;" src="../../Img/copyright.png"></image>
+     </view> 
+    </swiper-item>
+    <swiper-item class="swiperItem">
+       <!--待收货  -->
+     <view class="contentList"  >
+       <!-- <view class='cartsNullView' wx:if="{{orderList.length === 0}}">
+          <image mode='widthFix' src='../../Img/orderNull.png' class='cartsNull'></image>
+          <text style='font-size:14px;color:#808080;margin-top:20px'>还没有相关订单哦</text>
+       </view> -->
+        <view class='orderItem' wx:for="{{orderList}}" wx:key="index">
+          <view class='ordertitle'>
+            <text>订单编号: {{item.saleOrderId}}<text wx:if="{{item.saleOrderReceiveType == '0'}}">(自提)</text></text>
+          </view>
+          <view class='shop' bindtap='changeToWillPay' data-saleOrderId="{{item.saleOrderId}}" data-orderStatus="2">
+            <view style='width:270px;' class='orderItemImageList'>
+              <image class='shopImg' wx:for="{{item.saleOrderProductList}}" wx:key="index" src="{{imageHost + item.productImagePath}}"></image>
+              <view wx:if="{{item.imageList === 1}}" style='font-size:15px;'> 
+                <text class='shopName'>{{item.saleOrderProductList[0].productName}}</text>
+                 <text>{{item.saleOrderProductList[0].productUnit}}</text> 
+              </view>
+            </view>
+            <view class='shopNum'> 
+              <text >x{{item.saleOrderTotalQuantity}}</text>
+              <text>待收货</text>
+            </view>
+          </view>
+          <view class='pay'>
+            <text>合计：¥ {{item.saleOrderPayAmount}}</text>
+            <view class='willGetBtn'>
+              <!-- <view class='logisticsBtn'>查看物流</view> -->
+              <view class='payBtn' bindtap='handleGetBtn' data-saleOrderId="{{item.saleOrderId}}">确认收货</view>
+            </view>
+            
+          </view>
+       
+        </view>
+       
+      </view>
+      <view class='bottomLogo' style='position:absolute;bottom:0;'>
+            <image  mode='widthFix' style="width:160px;" src="../../Img/copyright.png"></image>
+      </view> 
+    </swiper-item>
+    <swiper-item class="swiperItem">
+    <!-- 待评价 -->
+    <view class="contentList"  >
+        <!-- <view class='cartsNullView' wx:if="{{orderList.length === 0}}">
+          <image mode='widthFix' src='../../Img/orderNull.png' class='cartsNull'></image>
+          <text style='font-size:14px;color:#808080;margin-top:20px;'>还没有相关订单哦</text>
+       </view> -->
+        <view class='orderItem' wx:for="{{orderList}}" wx:key="index">
+          <view class='ordertitle'>
+            <text>订单编号: {{item.saleOrderId}}<text wx:if="{{item.saleOrderReceiveType == '0'}}">(自提)</text></text>
+          </view>
+           <view class='shop' bindtap='changeToWillPay' data-saleOrderId="{{item.saleOrderId}}" data-orderStatus="3">
+            <view class='orderItemImageList'>
+              <image class='shopImg' wx:for="{{item.saleOrderProductList}}" wx:key="index" src="{{imageHost + item.productImagePath}}"></image>
+              <view wx:if="{{item.imageList === 1}}" style='font-size:15px;'> 
+                <text class='shopName'>{{item.saleOrderProductList[0].productName}}</text>
+                 <text>{{item.saleOrderProductList[0].productUnit}}</text> 
+              </view>
+            </view>
+            <view class='shopNum'> 
+                <text>x{{item.saleOrderTotalQuantity}}</text>
+                <text style='color:#72bf34'>待评价</text>
+            </view>
+          </view>
+          <view class='pay'>
+            <text>应付：¥ {{item.saleOrderPayAmount}}</text>
+            <view class='willEvaluateBtn'>
+                <!-- <view class='againBuy'>查看物流</view> -->
+                <view class='sureBtn' bindtap='changeToEvaluate' data-index="{{index}}">评价</view>
+            </view>
+          </view>
+        </view>
+    </view>
+    <view class='bottomLogo' style='position:absolute;bottom:0;'>
+            <image  mode='widthFix' style="width:160px;" src="../../Img/copyright.png"></image>
+    </view> 
+    </swiper-item>
+ </swiper>
+    
+</view>

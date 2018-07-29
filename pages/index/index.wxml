@@ -1,0 +1,166 @@
+
+<view class='container'>
+  <view class='top'>
+     <view bindtap='handleToOrigin'>
+       <text class='icon-origin' style='font-size:20px;'></text>
+       <text class='originRight'>{{locationAddress}}</text>
+     </view>
+    <view class='search'  bindtap='handleToSearch'>
+      <text class='icon-search' style='margin:0px 5px;font-size:18px;'></text>
+  <text style='color:#787878;font-size:12px;'>请输入商品名称</text>
+    </view>
+  </view>
+  <view class='navigation'>
+    <scroll-view scroll-x="true"  class='navigationPart' wx:if="{{!navigation}}">
+    
+      <view  wx:for="{{navigationItem}}" bindtap='handleChangeNavigationItem' wx:key="{{index}}"  class="{{current ==index?'first':''}}" data-current="{{index}}" >{{item.productCategoryName}}</view>
+    </scroll-view>
+    <!--第一个  -->
+    <view style='width:100%;' wx:if="{{navigation}}" class='navigationAll'>
+      <view style='width:100%;margin-left:15px;height:45px;line-height:45px;'>全部分类</view>
+      <view class='kinds'>
+        <view  wx:for="{{navigationItem}}" bindtap='handleChangeNavigationItem' wx:key="item.id"  class="{{current ==index?'kindsItem':''}}" data-current="{{index}}" >{{item.productCategoryName}}</view>
+      </view>
+    </view>
+  </view>
+   <view class='arrow' bindtap='handleChangeNavigationType' >
+    <view class="{{navigation ?'arrowUp':'arrowDown'}}"></view>
+   </view>
+    <!--第二个  -->
+  <swiper scroll-x="true"style='height:{{swiperHeight}}px;width:100%;background:white;' bindchange="handleChangeCurrent"  current='{{current}}' duration="1000" >
+    <swiper-item class='swiperContent' wx:for="{{navigationItem}}" wx:key="index" >
+    <swiper class='banner'  interval="2000" circular="true" indicator-dots="true" indicator-color="#fff" indicator-active-color="#ff4c4d">
+          <swiper-item wx:for="{{banner}}" wx:key="index">
+          <image mode="widthFix" bindtap='handleToTopic'style='transition: opacity 1s linear 2s;' lazy-load='true'  src="{{imageHost + item.subjectImagePath}}"  data-subjectId="{{item.subjectId}}"></image>
+        </swiper-item>
+    </swiper>
+    <!--banner的  -->
+    <view class='attention'    data-current="{{current}}" >
+      <view>
+        <text class='icon-sure'></text>
+        <text class='attentionText'>犁小农自营品牌</text>
+      </view>
+      <view>
+          <text class='icon-sure'></text>
+        <text>48小时无忧退货</text>
+      </view>
+      <view>
+        <text class='icon-sure'></text>
+        <text>自有物流配送</text>
+      </view>
+      
+    </view>
+<!--     
+    <scroll-view scroll-x="true" class='shopKinds' wx:if="{{shopKinds}}" >
+        <view class='shopKindsItem' wx:for="{{navigationItemChild}}"  wx:key="{{index}}" data-index="{{index}}" bindtap='handleToShopKinds' >
+         <view>
+           <image class='shopKindsIcon' lazy-load='true' src="{{imageHost + item.productCategoryImagePath}}"></image>
+            <text class='shopKindsName'>{{item.productCategoryName}}</text>
+         </view>
+        </view>
+    </scroll-view> 
+-->
+    <view class='secondKindsContent' wx:if="{{shopKinds}}">
+          <view class='secondKindsItem' wx:for="{{navigationItemChild}}" wx:key="index" data-index="{{index}}" bindtap='handleToShopKinds'>
+            <image class='secondKindsItemImg'  src="{{imageHost + item.productCategoryImagePath}}"></image>
+            <view class='secondKindsItemName'>{{item.productCategoryName}}</view>
+             <!-- <image class='secondKindsItemImg' style='border:1px solid #f00' src="../Img/31.png"></image>  -->
+          </view>
+        </view>
+      <!--推荐页面  -->
+        <view class='tuiJianNavigation'  wx:if="{{!shopKinds && current == '0'}}" >
+             <view class='tuiJianNavigationTop'>
+              <button open-type="{{item.otherType}}" style='background:transparent;padding: 0;margin:0px 8px;color:#474747;height:90px;display:flex; justify-content: space-around;flex-direction: column;' class='shopKindsItem'  wx:for="{{tuiJianNavigationList}}" wx:key="index"  bindtap='{{item.navigateTo}}'>
+                 <!-- <image class='shopKindsIcon' style='width:30px;height:30px;margin:10px 0;' src="{{item.src}}">s</image>    -->
+                <text class="{{item.className}}" style="font-size:35px;position:relative;top:8px;">
+                  <text class="path1"></text><text class="path2"></text><text class="path3"></text><text class="path4"></text><text class="path5"></text>
+                </text>
+                <view class='shopKindsName' style='position:relative;height:20px;line-height:20px;'>{{item.title}}</view>
+             </button>
+             </view>
+             
+        </view>
+         <!--1+2导航  -->
+        <view class='tuiJianBannerBottom'  wx:if="{{ !shopKinds && current == '0'}}" >
+          <view class='tuiJianBannerBottomLeft' bindtap='handleToTopic' data-subjectId="{{bannerOne[0].subjectId}}">
+            <image wx:if="{{bannerOne[0].subjectImagePath}}" src="{{imageHost + bannerOne[0].subjectImagePath}}" mode='widthFix' ></image>
+          </view>
+          <view  class='tuiJianBannerBottomRight'>
+         
+            <view bindtap="handleToTopic" style='border-bottom:1px solid #f0f0f0' data-subjectId="{{bannerOne[1].subjectId}}">
+              <image wx:if="{{bannerOne[1].subjectImagePath}}" src="{{imageHost + bannerOne[1].subjectImagePath}}" mode='widthFix' ></image>
+            </view>
+            <view>
+            <image wx:if="{{bannerOne[2].subjectImagePath}}" bindtap="handleToTopic" src="{{imageHost + bannerOne[2].subjectImagePath}}" mode='widthFix' data-subjectId="{{bannerOne[2].subjectId}}"></image>
+            </view>
+          </view>  
+        </view>
+        <view class='content' wx:if="{{ !shopKinds && current == '0'}}"   wx:for="{{goodsContentList}}" wx:key="index"  data-current="{{current}}"  >
+         <view class='contentTitle'>
+          <view class='contentTitleName'>{{item.subjectCategoryName}} </view>
+          <view  wx:if="{{shopKinds}}" id="arrowUp"  >
+            <view class='arrowUpContent'   style=''></view>  
+          </view>
+        </view>
+        <view class='contenttitleBottom'>{{navigationItem[current].goodsCategoryTitle}}</view>
+        <image class='tuiJianBanner'   mode='widthFix' wx:if="{{ !shopKinds && current == '0'}}" src="{{imageHost + item.subjectCategoryImagePath}}"></image>
+        <view class='shopList'>
+          <view class='shopItem' wx:for="{{item.subjectCategoryProductList}}" wx:key="{{index}}">
+            <image bindtap='handleToShopDetail'  style='height:{{imgHeight}}px' lazy-load='true' mode='widthFix' data-goodsId="{{item.productId}}"  src="{{imageHost + item.productImagePath}}"></image> 
+            <view class='shopTitle'>{{item.productName}}</view>
+            <!-- <view class='shopIntroudce'>{{item.productTitle}}</view>  -->
+            <view class='icon-shopCars shopCars' style='display:none' bindtap='addToCar' data-productId="{{item.productId}}" data-productSkuId="{{item.productSkuId}}"></view>
+            <view class='shopPrice'>¥ {{item.productPrice}}
+            <!-- /<text class='shopNum'>{{item.productWeight}}{{item.productUnit}}</text> -->
+            </view>
+          </view> 
+        </view> 
+    </view>
+    <!--团购页面  -->
+      <view class='content'  data-current="{{current}}"    wx:if="{{ !shopKinds && current == '1'}}" >
+        <view class='contentTitle' bindtap='handleToShopKinds'  data-index="{{index}}">
+          <view class='contentTitleName' >团购</view>
+          <view class='arrowUpContent' wx:if="{{shopKinds}}"  ></view>  
+        </view>
+        <view class='contenttitleBottom'>{{item.goodsCategoryTitle}}</view>
+        <image wx:if="{{groupBanner[0].productBannerImagePath}}" class='tuiJianBanner'  mode='widthFix' src="{{imageHost + groupBanner[0].productBannerImagePath}}"></image>
+        <view class='shopList'>
+          <view class='shopItem' wx:for="{{groupGoodsList}}" wx:for-item="items" wx:key="{{index}}">
+            <image bindtap='handleToShopDetail' lazy-load='true' mode='widthFix'  data-goodsId="{{items.productId}}" style='height:{{imgHeight}}px'  src="{{imageHost + items.productImagePath}}"></image> 
+            <view class='shopTitle'>{{items.productName}}</view>
+            <!-- <view class='shopIntroudce'>{{items.productTitle}}</view>  -->
+          
+            <view class='shopPrice'>¥ {{items.productPrice}}
+            <!-- /<text class='shopNum'>{{items.productWeight}}{{items.productUnit}}</text> -->
+            </view>
+        
+          </view> 
+        </view> 
+      </view> 
+    <!--正常1，2级导航页面  -->
+       <view class='content'  data-current="{{current}}"   wx:for="{{navigationItemChild}}" wx:key="index"  wx:if="{{ shopKinds && item.productList.length>0}}" >
+        <view class='contentTitle' bindtap='handleToShopKinds'  data-index="{{index}}">
+          <view class='contentTitleName' >{{item.productCategoryName}} </view>
+          <view class='arrowUpContent' wx:if="{{shopKinds}}"  ></view>  
+        </view>
+        <view class='contenttitleBottom'>{{item.goodsCategoryTitle}}</view>
+        <!-- <image class='tuiJianBanner'  mode='widthFix' src="{{imageHost + item.productCategoryImagePath}}"></image> -->
+        <view class='shopList'>
+          <view class='shopItem' wx:for="{{item.productList}}" wx:for-item="items" wx:key="{{index}}">
+            <image bindtap='handleToShopDetail' lazy-load='true' style='height:{{imgHeight}}px' mode='widthFix'  data-goodsId="{{items.productId}}"  src="{{imageHost + items.productImagePath}}"></image> 
+            <view class='shopTitle'>{{items.productName}}</view>
+            <!-- <view class='shopIntroudce'>{{items.productTitle}}</view>  -->
+          
+            <view class='shopPrice'>¥ {{items.productPrice}}
+            <!-- /<text class='shopNum'>{{items.productWeight}}{{items.productUnit}}</text> -->
+            </view>
+        
+          </view> 
+        </view> 
+      </view> 
+  </swiper-item>
+  </swiper>
+</view>
+<view class='bottomLogo'  data-current="{{current}}"  >
+    <image  mode='widthFix' style="width:160px;" src="../Img/copyright.png"></image>
+</view>

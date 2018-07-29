@@ -1,0 +1,69 @@
+page{
+  background: #f0f0f0;
+}
+.container{
+  border-top: 1px solid #cdcdcd;
+}
+.cardsKind{
+  margin-top:15px; 
+  width: 92%;
+  height: 110px;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 2px;
+}
+.cardsKind>view{
+  width: 22%;
+  height: 107px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+   border-bottom: 3px solid transparent;
+}
+.cardsKind .cardsKindItem{
+  border-bottom: 3px solid #ff4c4d;
+}
+.cardsKindItemTitle{
+  font-size: 12px;
+   margin-bottom: 5px;
+}
+.cardsKindItemNum{
+  font-size: 24px;
+  font-weight: 600;
+  margin-right: 2px;
+ 
+}
+.cardsKindItemType{
+  font-size: 12px;
+  color: #646464;
+}
+.cardsList{
+  width: 92%;
+}
+.cardsItem{
+  margin-top: 10px;
+  width: 100%;
+  height: 90px;
+  display: flex;
+  border-radius:2px; 
+  background: white;
+  align-items: center;
+}
+.cardsItemImg{
+  width:70px;
+  height: 70px;
+  background: #f0f0f0; 
+  margin-left: 10px;
+}
+.cardsItemInfo{
+  margin-left: 10px;
+  font-size: 15px;
+}
+.cardsItemTime{
+  font-size: 12px;
+  color: #b4b4b4;
+  margin-top: 10px;
+}

@@ -1,0 +1,123 @@
+<view class='container'>
+  <view class='cartsNullView' wx:if="{{carts.length === 0}}" bindtap='changeToindex'>
+    <image mode='widthFix' src='../Img/cartsNull.png'  lazy-load='true' class='cartsNull'></image>
+    <text style='font-size:14px;color:#808080;margin-top:10px;'>快去买点什么吧~</text>
+  </view>
+  <!-- <view class='attention' bindtap='changeToindex' wx:if="{{carts.length > 0}}">
+    <text>还差28元可免邮费</text>
+    <text>去凑单></text>
+  </view> -->
+  <view class='shopList'>
+    
+    <view class='shopItem' wx:for="{{carts}}" wx:key="{{index}}">
+      <view class='success' bindtap='handleChangeSelected' data-index="{{index}}" data-cartProductId="{{item.cartProductId}}">
+          <icon wx:if="{{item.cartProductIsActive}}" type="success" size="20" color="red"/>
+      </view>
+      <view class='shopDetail' data-goodsId="{{item.goodsId}}">
+        <image class='shopImg'  lazy-load='true' bindtap='handleToGoodsDetail' data-goodsId="{{item.productId}}" mode='widthFix' src="{{imageHost + item.productImagePath}}"></image>
+        <view class='shopFontInfo'>
+          <text class='shopName'>{{item.productName}}</text>
+          <!-- <text class='shopNum'>{{item.productUnit}}</text> -->
+          <view style='display:flex; align-items:flex-end; justify-content: space-between;'>
+            <text>¥{{item.productSkuPrice}}</text>
+            <view class='setNum'>
+              <text bindtap='numReduce' style='font-size:20px' data-index="{{index}}">-</text>
+              <input type="number" bindinput='handLeChangeInput' value='{{item.productQuantity}}' style='z-index:1;' data-index="{{index}}"></input>
+              <!-- <text>{{item.goodsQuantity}}</text> -->
+              <text style='border-right: 1px solid #cdcdcd;font-size:20px' data-item="{{item}}"  bindtap='numAdd'  data-index="{{index}}">+</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+      
+  </view>
+  <view class='shopList' wx:if="{{uselessGoodsList.length > 0}}">
+    <view class="shopListTitle">
+      <text>失效商品</text>
+      <view  bindtap='handleDeleateShop'>清除失效商品</view>
+    </view>
+    <view class='shopItem' wx:for="{{uselessGoodsList}}" wx:key="{{index}}">
+      <view class='success'  data-index="{{index}}">   
+      </view>
+      <view class='shopDetail'>
+         <image class='shopImg' mode='widthFix'  lazy-load='true' src="{{imageHost + item.productImagePath}}"></image>
+        <view class='shopFontInfo'>
+          <text class='shopName'>{{item.productName}}</text>
+          <!-- <text class='shopNum'>{{item.productWeight}}{{item.productUnit}}</text> -->
+          <view style='display:flex; align-items:flex-end; justify-content: space-between;'>
+            <text>¥{{item.productSkuPrice}}</text>
+            <view class='setNum disable'>
+              已失效
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+<!--       
+    <view style='width:100%;height:60px;display:flex;align-items:center;' wx:if="{{shopsLost.length > 0}}">
+      <view class='delete' bindtap='deleateShop'>清除失效商品</view>
+    </view> -->
+    <view class='mark'></view>
+  </view>
+  <view class='otherShop' wx:if="{{buyOtherList.length>0}}" style="border-bottom:4px solid #f0f0f0;">
+    <view class='otherShopTitle'>
+      <image class='otherShopImg' mode='widthFix'  lazy-load='true' src = "{{imageHost + carts[0].goodsImageOriginalPath}}"></image>
+      <text style='margin-left:10px;'>看了该商品的人还买了</text>
+    </view>
+    <view class='otherShopList'>
+        <view class='otherShopItem' wx:for="{{buyOtherList}}" bindtap='handleToGoodsDetail' data-goodsId="{{buyOtherList[index].goodsId}}" wx:key="{{item.goodsId}}">
+          <image mode='widthFix'   lazy-load='true' src="{{imageHost + item.goodsImageOriginalPath}}"></image>
+           <text class='otherShopName'>{{item.goodsName}}</text>
+          <!-- <view class='otherShopIntroudce'>{{item.goodsTitle}}</view>   -->
+          <text class='otherShopPrice'>¥ {{item.goodsPrice}}
+          <!-- /<text class='shopNum'>{{item.goodsWeight}}{{item.goodsUnit}}</text> -->
+          </text>
+         
+        </view>
+    </view>
+  </view>
+   <view class='otherShop' wx:if="{{youLikeList.length>0}}">
+    <text style='padding:25px;font-size:18px'>猜你喜欢</text>
+    <view class='otherShopList'>
+        <view class='otherShopItem' wx:for="{{youLikeList}}" wx:key="index" bindtap='handleToGoodsDetail' data-goodsId="{{youLikeList[index].productId}}">
+          <image mode='widthFix'   lazy-load='true' src="{{imageHost + item.productImagePath}}"></image>
+           <text class='otherShopName'>{{item.productName}}</text>
+          <!-- <view class='otherShopIntroudce'>{{item.productTitle}}</view>   -->
+          <text class='otherShopPrice'>¥ {{item.productPrice}}
+          <!-- /<text class='shopNum'>{{item.productWeight}}{{item.productUnit}}</text> -->
+          </text>
+        
+        </view>
+    </view>
+    <!-- <view class='moreImage'><image mode='widthFix' src='../Img/more.png'></image></view> -->
+  </view>
+  <!--购物车有内容  -->
+  <view class='pay'  wx:if="{{carts.length > 0}}">
+    <view style="display:flex;align-items:center;margin-left:15px;" >
+       <view class='success'  bindtap="handleSelectAll" ><icon type="success" size="20" color="red"  wx:if="{{cartsInfo.cartIsActive}}"/></view>
+      <text style='margin-left:10px;'>已选({{cartsInfo.productActiveQuantity}})</text>
+    </view>
+    <view style='height:100%;display:flex;align-items:center;'>
+      <text class='sumPrice'>
+          <text>¥{{cartsInfo.cartPayAmount}}</text>
+         <text wx:if="{{cartsInfo.cartRewardAmount != 0}}" style='color:#cdcdcd;margin-left:5px;'>满减¥({{cartsInfo.cartRewardAmount}})</text>
+      </text>
+      <text class='sumFont' bindtap='handleToNewOrder'>结算({{cartsInfo.productActiveQuantity}})</text>
+    </view>
+  </view>
+   <view class='bottomLogo'>
+        <image  lazy-load='true'  mode='widthFix' style="width:160px;" src="../Img/copyright.png"></image>
+  </view> 
+   <!--购物车为空 -->
+  <!-- <view class='pay'  wx:if="{{carts.length === 0}}">
+    <view style="display:flex;align-items:center;margin-left:15px;" >
+       <view class='success'  ><icon type="success" size="20" color="red"  wx:if="{{selectAllStatus}}"/></view>
+      <text style='margin-left:10px;'>全选</text>
+    </view>
+    <view style='height:100%;display:flex;align-items:center;'>
+      <text class='sumPrice'>¥{{totalPrice}}</text>
+      <text class='sumFont' bindtap='changeToindex' style='background:#dcdcdc'>下单</text>
+    </view>
+  </view> -->
+</view>

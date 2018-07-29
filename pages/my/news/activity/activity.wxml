@@ -1,0 +1,17 @@
+<view class='container'>
+  <view class='content'>
+    <view class='contentItem' wx:for="{{activityList}}" wx:key="{{index}}" bindtap='handleToActivityDetail'>
+      <view class='title'>{{item.time}}</view>
+      <view class='itemContent'>
+        <text class='itemTitle'>{{item.activityTitle}}</text>
+        <image class='itemImg' src="{{item.src}}"></image>
+        <view class='itemImg mark' wx:if="{{!item.activityIsRead}}"> 活动结束</view>
+        <view class='itemIntroduce'>{{item.introduce}}</view>
+      </view>
+    </view>
+    
+  </view>
+   <view class='bottomLogo'>
+        <image  mode='widthFix' style="width:160px;" src="../../../Img/copyright.png"></image>
+    </view>
+</view>

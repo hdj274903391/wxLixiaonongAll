@@ -1,0 +1,42 @@
+<view class="container">
+ <!-- <view class='cartsNullView' wx:if="{{listDisplay.length === 0}}" bindtap='handleToBack'>
+    <image mode='widthFix' src='../../Img/soFa.png' class='cartsNull'></image>
+    <text style='font-size:14px;color:#808080;margin-top:20px;'>还没有评论，赶快来抢沙发吧</text>
+  </view> -->
+  <view class='top' >
+    <view class='scale'>
+      <view class='scaleImg'> 
+        <text class='.icon-activeStar' wx:for="{{activeStar}}" wx:key="{{index}}"></text>
+        <text class='.icon-star' wx:for="{{ 5 - activeStar}}" wx:key="{{index}}"></text>   
+      </view>
+      <text>{{evaluateInfo.rate * 100}}%好评</text>
+    </view>
+    <view class='type'>
+      <view bindtap='handlechangeType' class="{{typeSelect == 1 ? 'type2' :'type1' }}" data-typeSelect="1">全部({{listAll.length}})</view>
+      <view bindtap='handlechangeType'class="{{typeSelect == 2 ? 'type2' :'type1' }}" data-typeSelect="2">有图({{listImg.length}})</view>
+      <view bindtap='handlechangeType' class="{{typeSelect == 3 ? 'type2' :'type1' }}" data-typeSelect="3">有内容({{listFont.length}})</view>
+    </view>
+  </view>
+  <view class='list'>
+    <view class='item' wx:for="{{listDisplay}}" wx:key="{{index}}">
+      <view class='itemTop'>
+        <image class='userImg' src="{{item.memberAvatarPath}}"></image>
+        <view class='userInfo'>
+          <view style='display:flex;align-items:center;'>
+            <text>{{item.memberNickName}} </text>
+            <view class='score'>
+              <text class='.icon-activeStar' wx:for="{{item.saleOrderProductCommentSatisfaction}}" wx:key="{{index}}"></text>
+              <text class='.icon-star' wx:for="{{ 5 - item.saleOrderProductCommentSatisfaction}}" wx:key="{{index}}"></text>   
+            </view>
+          </view>
+          <view class='time'>{{item.systemCreateTime}}</view>
+        </view>
+      </view>
+      <view class='itemContent'>{{item.saleOrderProductCommentContent}}<view>
+         <image class='itemContentImg' wx:for="{{item.saleOrderProductCommentImageList}}" wx:key="index" src="{{imageHost + item.saleOrderProductCommentImagePath}}"></image>
+      </view>
+       </view>
+    </view>
+    
+  </view>
+</view>

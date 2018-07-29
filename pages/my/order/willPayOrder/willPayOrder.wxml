@@ -1,0 +1,122 @@
+<view class="container">
+  <view class='itemContent' >
+    <view class='itemInfo'>
+      <view class='itemLeft'>
+        <text>{{orderInfo.saleOrderReceiveName}}</text>  
+        <view class='current' style='display:none'>默认</view>
+      </view>
+      <view class='itemCenter' >
+        <text>{{orderInfo.saleOrderReceiveMobile}}</text>
+        <text class='address'>{{orderInfo.saleOrderReceiveProvince}}{{orderInfo.saleOrderReceiveCity}}{{orderInfo.saleOrderReceiveArea}}</text>
+      </view>
+    </view>
+    <view class='arrow' style='display:none'></view>
+   
+  </view>
+   <image class='addressImg' src='/pages/Img/address.jpg'></image>
+  <view class='bottomLine'></view>
+  <view class='contentList'>
+    <view class='title'>
+      <view class='titleLeft'>
+        <view></view>
+        <text wx:if="{{orderInfo.saleOrderInvoiceType == '1'}}">次日达</text>
+         <text wx:if="{{orderInfo.saleOrderInvoiceType == '0'}}">自提</text>
+      </view>
+      <view class='titleRight' wx:if="{{orderInfo.saleOrderInvoiceType == '1'}}">
+        <text>{{orderInfo.saleOrderDistributionStartTime}}-{{orderInfo.saleOrderDistributionEndTime}}</text>
+        <view class='arrow' style='display:none'></view>
+      </view>
+    </view>
+    <view class='shopList'>
+      <view class='shopItem' wx:for="{{orderInfo.saleOrderProductList}}" wx:key="index">
+        <view>
+            <image class='shopImg' src="{{imageHost + item.productImagePath}}" bindtap='handleToShopDetail' data-productId="{{item.productId}}"></image>
+          <view class='shopInfo'>
+            <view class='shopName'>{{item.productName}}<text style='float:right;'>x{{item.saleOrderProductQty}}</text></view>
+            <view class='shopNum'>{{item.productUnit}}</view>
+            <view class='shopPrice'>¥{{item.productPrice}}</view>
+            </view>
+        </view>
+
+        <view class='saleAfter' wx:if="{{orderStatus != 0 && orderStatus != 5}}" >
+          <view class='delateBtn' bindtap='handleToService' data-index="{{index}}">退款</view>
+        </view>
+      </view>
+     
+    </view>
+  </view>
+  <view class='bottomLine'></view>
+  <view class='payInfo' style='display:none'>
+      开具发票 
+      <view style='margin-right:10px;'>
+         <switch checked bindchange="switch1Change"/>
+      </view>
+    </view>
+  <view class='bottomLine'></view>
+  <view class='orderInfo'>
+    <view>
+      <view class='InfoItem'>订单编号: {{orderInfo.saleOrderId}}<text wx:if="{{orderInfo.saleOrderInvoiceType == '0'}}">(自提)</text></view>
+      <view class='InfoItem'>下单时间: {{orderInfo.systemCreateTime}}</view>
+    </view>
+     <view>
+      <view class='InfoItem'  wx:if="{{item.saleOrderReceiveType == '1'}}">自提门店:{{orderInfo.saleOrderTotalAmount}}</view>
+      <view class='InfoItem'>商品合计:　¥ {{orderInfo.saleOrderTotalAmount}}</view>
+      <view class='InfoItem'>运费:　¥ {{orderInfo.saleOrderExpressAmount}}</view>
+      <view class='InfoItem'>积分抵扣:　¥ {{orderInfo.saleOrderPointAmount}}</view>
+      <view class='InfoItem'>满减金额:　¥ {{orderInfo.saleOrderRewardAmount}}</view>
+      <view class='InfoItem'>优惠劵抵扣:　¥ {{orderInfo.saleOrderCouponAmount}}</view>
+      <view class='InfoItem'>余额消费:　¥ {{orderInfo.saleOrderBalanceAmount}}</view>
+    </view>
+    
+     <view>
+      <view class='InfoItem' style='color:red;border-bottom:0'>应付合计:　¥ {{orderInfo.saleOrderPayAmount}}</view>
+    </view>
+   
+  </view>
+  <view class='bottomLine'></view>
+   <view class='service'>
+    <view class='InfoItem'>服务时间:9:00 - 22:00 </view>
+    <button class='serviceType' open-type='contact'> <text class='icon-service1' style='font-size:17px;'></text> 在线客服</button>
+    <button class='serviceType' bindtap='handleCall' style='float:right'> <text class='icon-phone'></text> 电话客服</button>
+  </view>
+  <view class='bottomLine'></view>
+  <view class='otherShop'>
+    <text style='padding:15px;font-size:18px'>猜你喜欢</text>
+    <view class='otherShopList'>
+        <view class='otherShopItem' wx:for="{{youLikeList}}" wx:key="index" bindtap='handleToShopDetail' data-productId="{{item.productId}}">
+          <image bindtap='changeToShopDetail' mode='widthFix'  src="{{imageHost + item.productImagePath}}"></image>
+           <text class='otherShopName'>{{item.productName}}</text>
+          <!-- <view class='otherShopIntroudce'>{{item.productTitle}}</view>   -->
+          <text class='otherShopPrice'>¥{{item.productPrice}}/<text class='shopNum'>{{item.productUnit}}</text></text>
+        </view>
+    </view>
+    <view class='moreImage'><image mode='widthFix' src='../../../Img/more.png'></image></view>
+  </view>
+  <view class='bottom' wx:if="{{orderStatus == 0}}">
+    <text>应付款：¥{{orderInfo.saleOrderPayAmount}}</text>
+    <view class='bottomList'>
+      <view class='bottomBtn' bindtap='handleCancleOrder'>取消订单</view>
+      <view class='bottomBtn' bindtap='handleToPay' style="background:linear-gradient(to right,#fe8657,#ff4c4d);color:white">付款 </view>
+    </view>
+  </view>
+  <view class='bottom' wx:if="{{orderStatus == 1}}" >
+    <view class='delateBtn' bindtap='handleSendBtn' data-saleOrderId="{{orderInfo.saleOrderId}}">提醒发货</view>
+  </view>
+   <view class='bottom' wx:if="{{orderStatus == 2}}" >
+    <view class='delateBtn' bindtap='handleGetBtn' data-saleOrderId="{{orderInfo.saleOrderId}}">确认收货</view>
+  </view>
+  <view class='bottom' wx:if="{{orderStatus == 3}}">
+    <view class='delateBtn' bindtap='changeToEvaluate'>评价</view>
+  </view>
+  <view class='bottom' wx:if="{{orderStatus == 5}}">
+    <!-- <view class='delateBtn' bindtap='changeToService'>申请售后</view> -->
+     <view class='delateBtn' bindtap='handleBuyAgain' >再次购买</view>
+  </view>
+  <!-- <view class='bottom' wx:if="{{orderStatus == 5}}">
+    <view class='delateBtn'>再次购买</view>
+  </view> -->
+  <view class='bottom' wx:if="{{orderStatus == 6}}">
+    <view class='delateBtn' bindtap='handleDelateOrder'>删除订单</view>
+  </view>
+</view>
+

@@ -1,0 +1,70 @@
+<view class="container">
+  <view class='content'>
+      <view class='user'>
+        <image class='userPhoto' mode='widthFix' src="{{groupInfo.grouponActivityMemberList[0].memberAvatarPath}}"></image>
+        <view class='userInfo'>
+            <view class='userName'>{{groupInfo.grouponActivityMemberList[0].memberNickName}}</view>
+            <view class='userTitle'>发起了{{groupInfo.grouponActivityMemberLimit}}人团</view>
+        </view>
+      </view>
+      <view class='goodsInfo' bindtap='handleToGoodsDetail' data-productId="{{groupInfo.productId}}"> 
+        <image class='goodsImage' mode='widthFix' wx:if="{{groupInfo.productImagePath}}" src="{{imageHost + groupInfo.productImagePath}}"></image>
+        <view class='goodsDetail'>
+          <view class='goodsName'>{{groupInfo.productName}}</view>
+          <view class='goodsPeopleNum'>{{groupInfo.grouponActivityMemberLimit}}人拼购价¥{{groupInfo.grouponActivityPrice}}</view>
+          <view class='goodsSprice'>
+           单买价
+          <view style='text-decoration:line-through;display:inline-block'>¥{{groupInfo.productPrice}}</view>
+          </view>
+        </view>
+      </view>
+      <view class='share'>
+        <view class='shareTitle' wx:if="{{groupInfo.grouponActivityStatus == 3 }}">
+        拼团成功
+        </view>
+        <view class='shareTitle' wx:if="{{groupInfo.grouponActivityStatus == 1 || groupInfo.grouponActivityStatus == 2 }}">
+        还差{{groupInfo.grouponActivityMemberLimit - groupInfo.grouponActivityMemberList.length}}人拼团成功，剩余时间
+        <text style='margin-left:5px;color:#ff4c4d;'>{{overTime}}</text>
+        </view>
+        <view class='shareNum'>
+            <view class='shareNumView' wx:for="{{groupInfo.grouponActivityMemberLimit}}" wx:key="index">
+                <image  mode='widthFix' src="{{groupInfo.grouponActivityMemberList[index].memberAvatarPath}}"></image>
+                <view class='headGroup'>团长</view>
+            </view>
+           
+        </view>
+        <button class='shareBtn' bindtap='handleChangeSkuNone' wx:if="{{share}}">立马参团</button>
+         <button class='shareBtn'open-type="share" wx:if="{{!share && groupInfo.grouponActivityMemberLimit != groupInfo.grouponActivityMemberList.length }}">邀请好友</button>
+          <button class='shareBtn' wx:if="{{!share && groupInfo.grouponActivityStatus == 3}}">已满</button> 
+          <button class='shareBtn' wx:if="{{!share && groupInfo.grouponActivityStatus == 4}}">拼团失败,已退款到余额!</button> 
+      </view>
+  </view>
+  <view class='bottomLine'></view>
+  <view class='hotGoods'>
+    <view class='hotTitle'>热门团购</view>
+    <view class='goodsList'>
+      <view class='goodsItem' wx:for="{{goodsList}}" wx:key="index" bindtap='handleToGoodsDetail' data-productId="{{item.productId}}">
+        <image mode='widthFix' class='goodsImg'src="{{imageHost + item.productImagePath}}"></image>
+        <view class='goodsName'>{{item.productName}}</view>
+        <view class='goodsUnit'>{{item.productTitle}}</view>
+        <view class='goodsPrice'><text style='color:black'>¥{{item.grouponPrice}}</text>  <text style=' text-decoration-line: line-through;'>¥{{item.productPrice}}</text></view>
+      </view>
+    </view>
+  </view>
+  <view class='mark' style='z-index:1200' wx:if="{{groupNumView}}">
+    <view style='width:100%;height:70vh;' bindtap='handleChangeSkuNone'></view>
+    <view class='goodsSkuView' style='height:30vh'>
+      <view class='goodsSkuNum'>
+        <text>购买数量</text>
+       <view class='setNum'>
+          <text bindtap='numReduce' data-index="{{index}}">-</text>
+          <input type="number" bindinput='handLeChangeInput' value='{{goodsNum}}' style='z-index:1;' data-index="{{index}}"></input>
+          <!-- <text>{{item.goodsQuantity}}</text> -->
+          <text style='border-right: 1px solid #cdcdcd' data-item="{{item}}"  bindtap='numAdd'  data-index="{{index}}">+</text>
+      </view>
+      </view>
+      <view class='skuBtn' bindtap='handleToGroup' >马上购买</view>
+      
+    </view>
+  </view>
+</view>

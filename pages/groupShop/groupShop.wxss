@@ -1,0 +1,261 @@
+.container{
+  border-top: 1px solid #f0f0f0;
+}
+.bannerImg{
+  width: 100%;
+  height:350px;
+  background: #cdcdcd; 
+}
+.bannerSwiper{
+  width: 100%;
+  height: 350px;
+}
+.bannerBottom{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f0f0f0;
+  
+}
+.bannerBottomPrice{
+  font-size: 18px;
+  color: #646464;
+  margin-left: 15px;
+}
+.bannerBottomCanclePrice{
+  text-decoration-line: line-through;
+  font-size: 12px;
+  color: #b4b4b4;
+}
+.bannerBottomTime{
+  margin-right: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.bannerBottomTimeTitle{
+  font-size: 10px;
+  color: #646464;
+}
+.bannerBottomTimeInfo{
+  font-size: 15px;
+ letter-spacing: 0.5px;
+}
+.goodsInfo{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+   font-size: 15px;
+   height: 45px;
+   align-items: center;
+}
+.goodsName{
+  font-size: 15px;
+  margin-left: 15px;
+  white-space: nowrap;
+  width: 75%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.goodsCollect{
+  margin-right: 15px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+
+}
+.group{
+  width: 100%;
+   border-top:5px solid #f0f0f0;
+   border-bottom: 5px solid #f0f0f0;
+}
+.groupTitle{
+  height: 45px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: #e7e7e7;
+}
+.groupTitle>view{
+  height: 15px;
+  font-size: 12px;
+  line-height: 15px;
+}
+.groupList{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+ 
+}
+.groupItem{
+  width: calc(100% - 15px);
+  height: 70px;
+ 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0;
+}
+.groupItemLeft{
+  display: flex;
+  align-items: center;
+}
+.groupPhoto{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #b4b4b4;
+}
+.groupName{
+ font-size: 12px;
+ margin-left: 5px; 
+}
+.groupItemRight{
+   display: flex;
+  align-items: center;
+}
+.groupItemInfo{
+  font-size: 12px;
+}
+.groupItemInfoTime{
+  color: #b4b4b4;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.groupItemBtn{
+  color: white;
+  width: 60px;
+  height: 25px;
+  text-align: center;
+  line-height: 25px;
+  font-size:15px;
+  background: #646464;
+  border-radius: 2px;
+  margin:0 15px;
+}
+.evaluate{
+  font-size: 14px;
+  width: 100%;
+  height: 44px;
+ 
+ 
+}
+.viewBetween{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin:0px 15px ;
+ 
+}
+.evaluateRight{
+  display: flex;
+  align-items: center;
+}
+.evaluateNum{
+  line-height: 14px;
+}
+
+.arrow{
+  width: 10px;
+  height: 10px;
+  border-bottom: 1px solid #b5b5b5;
+  border-right: 1px solid #b5b5b5;
+  transform: rotate(-45deg);
+  display: inline-block;
+  margin-right: 18px;
+
+}
+.evaluateList{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: space-around;
+  width: 100%;
+  border-bottom: 4px solid #f0f0f0;
+}
+.ItemPhoto{
+  width: 40px;
+  height: 40px;
+  background: #f0f0f0;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin: 0 15px;
+}
+.ItemInfoDetail{
+  width: 300px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.ItemInfoDetail>view{
+  display: flex;
+  align-items: center;
+}
+.star{
+  display: flex;
+  margin-left: 10px;
+  align-items: center
+}
+.star>text{
+  margin-right: 5px;
+}
+
+.evaluateItemInfo{
+  display: flex;
+  height: 75px;
+  align-items: center;
+  font-size: 14px;
+
+}
+.evaluateContent{
+  font-size: 15px;
+  margin-left: 15px;
+}
+.evaluateImg{
+  width: 90px;
+  height: 90px;
+  background: #f0f0f0;
+  margin: 15px;
+  
+}
+.bottom{
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  background: #f1f1f1;
+}
+.bottom>view{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.bottom>view>view:nth-child(1){
+  font-size: 18px;
+  color: white;
+}
+.bottom>view>view:nth-child(2){
+  font-size: 12px;
+    color: white;
+}
+.bottomService{
+  width: 50px;
+  height: 100%;
+}
+.bottomSelfPay{
+  flex-grow: 2;
+   height: 100%;
+   background: #bdbdbd;
+}
+.bottomBuildGroup{
+  flex-grow: 2;
+   height: 100%;
+   background: #8a8a8a;
+}

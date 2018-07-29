@@ -1,0 +1,30 @@
+<view class='container'>
+  <view class='search'>
+  <view class='searchInput'>
+      <text class='icon-search' style='margin:0 5px;'></text>
+      <input bindinput='HandleInputContent' type="text" placeholder-style="color:#969696" placeholder='请输入商品名称' style='margin-right:10px;color:#454545;width:85%;' bindconfirm='handleSubmitInput' value="{{inputContent}}"></input>
+      <text class='icon-cancle'bindtap='handleClearInput' style='margin-right: 10px;'></text>
+    </view>
+    <text bindtap='ClearInput'>取消</text>
+  </view>
+   <view wx:if="{{inputContent1}}" class='inputContentList'>
+    <view bindtap='handleChengeToInputContent' wx:for="{{SearchPromptlist}}"  wx:key="index" class='inputContentItem' data-content="{{item.goodsName}}">{{item.goodsName}}</view>
+  </view>
+  <view class='shopList'>
+    <view class='shopItem'  wx:for="{{shopsList}}" wx:key="index">
+      <image bindtap='handleToGoodsDetail' data-goodsid="{{shopsList[index].productId}}" style="height:{{goodsImgWidth}}px" src="{{imageHost + item.productImagePath}}"></image>
+        <text class='shopTitle'>{{item.productName}}</text>
+          <!-- <view class='shopIntroudce'>{{item.productTitle}}</view>  -->
+      <!-- <view style='display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:5px;'> -->
+        <text class='shopPrice'>¥{{item.productPrice}}
+        <!-- /<text class='shopNum'>{{item.productWeight}}{{item.productUnit}}</text> -->
+        </text>
+
+    </view>
+  </view>
+  <view class='shopsCar' bindtap='handleTocarts'> 
+    <text class='icon-shopCars'></text>
+    <view  class='shopsNum'>{{cartsNum}}</view>
+  </view>
+ 
+</view>

@@ -1,0 +1,56 @@
+
+ <view class='container'>
+    <view class='header'>
+      <view class='search'>
+          <view class='searchTitle' bindtap='handleChooseAddress'>
+            <text>{{nowOrigin}}</text>
+            <view class="{{!chooseAddress ?'arrow':'arrow1' }}"></view>
+          </view>
+          <text class='icon-search' style='margin:0px 5px;font-size:15px;'></text>
+          <input  placeholder='请输入收货地址'> 
+      </input>
+    </view>
+  
+    </view>
+   <view class='current'>当前：{{locationAddress}}</view>
+   <view class='chooseAddress'  wx:if="{{chooseAddress}}">
+      <view class='chooseRecent'>
+        <text class='recentTitle'>定位/最新定位</text>
+        <view class='recentList'>
+          <view class='recentItem' bindtap='handleChangeInput' wx:for="{{chooseRecent}}"  wx:key="{{index}}" data-index="{{item.name}}"> <text class="{{index== 0?'icon-origin':'' }}" ></text>{{item.name}}</view>
+        </view>
+      </view>
+      <view class='chooseHot'>
+        <text class='hotTitle'>热门城市</text>
+        <view class='hotList'>
+          <view class='hotItem'  bindtap='handleChangeInput' wx:for="{{hotOrigin}}"  wx:key="{{index}}" data-index="{{item.name}}">{{item.name}}</view>
+        </view>
+      </view>
+      <view class='serviceTitle'>服务城市</view>
+       <view class='chooseService'>
+        <view class='ServiceList'>
+          <view class='serviceItem'  bindtap='handleChangeInput' wx:for="{{serviceList}}"  wx:key="{{index}}" data-index="{{item.name}}">{{item.districtName}}</view>
+        </view>  
+      </view>
+   </view>
+   <view class='current' style='background:transparent;' wx:if="{{defaultAddress != ''}}">我的收货地址 <text style='color:#ff4c4d;float:right;margin-right:15px;' bindtap='handeleToAddAddress'>新增地址</text></view>
+   <view class='default'  wx:if="{{defaultAddress != '{}'}}">
+      <view>
+        <view style="line-height:19px;">{{defaultAddress.memberAddressName}}</view>
+      　<view class='defaultIcon'>默认</view> </view>
+      <text>{{defaultAddress.memberAddressProvince}}{{defaultAddress.memberAddressCity}}{{defaultAddress.memberAddressArea}}{{defaultAddress.memberAddressDetail}}</text>
+   </view>
+   <!-- <view  class='current' style='background:transparent;'>附近地址</view>
+   <view class='address'>
+    <view>江正地产</view>
+     <view>赵记古法传统牛肉面牛肉汤</view>
+      <view>sunflower美甲美睫半永久工作室</view>
+       <view>浦锦路派出所</view>
+   </view>
+   <view class='bottomLogo' style='position:absolute;bottom:0;'>
+        <image  mode='widthFix' style="width:160px;" src="../../Img/copyright.png"></image>
+    </view> -->
+  <view class='bottomLogo' style='position:absolute;bottom:0;'>
+        <image  mode='widthFix' style="width:160px;" src="../../Img/copyright.png"></image>
+  </view>
+ </view>

@@ -1,0 +1,69 @@
+page{
+  background: #f0f0f0;
+}
+.container{
+  border-top: 1px solid #cdcdcd;
+  width: 100%;
+  padding: 0;
+  justify-content: center;
+  background: white;
+}
+
+.list{height: 115px;
+  width: 92%;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: white;
+  padding: 5px 4%;
+}
+ /* .list>view{
+   margin:0 15px; 
+  height: 30px;
+  line-height: 30px;
+}  */
+
+.listTittle{
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+.listContent{
+  display: flex;
+  justify-content: space-between;
+}
+
+.numRest{
+  font-size:24px;
+}
+.noBottom{
+  border-bottom: 0;
+}
+.history{
+  font-size: 14px;
+  color: #b4b4b4;
+  line-height: 50px;
+  width: 100%;
+  text-align: center;
+
+  white-space: 2px;
+}
+.rechargeBtn{
+  color: white;
+  background:linear-gradient(to right,#fe8657,#ff4c4d) ;
+  font-size: 15px;
+  width: 75px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 30px;
+
+}
+.arrow{
+  width: 10px;
+  height: 10px;
+  border-right: 1px solid #cdcdcd;
+  border-bottom: 1px solid #cdcdcd;
+  transform: rotate(-45deg);
+  margin-right: 15px;
+}

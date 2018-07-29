@@ -1,0 +1,81 @@
+<view class='container'>
+ <button class="kf_button item" open-type="contact" session-from="weapp">
+    <view class='content'>
+      <view class='contentLeft' bindtap='changeToService'>
+        <view class='icon-service icon' ></view>
+        <view class='title'>
+          <view style='font-size:15px;line-height:18px;color:#464646'>我的客服</view>
+          <view style='line-height:25px;'>查看我与客服的沟通记录</view>
+        </view>
+      </view>
+      <view class='contentRight'>
+        <view  style='display:none' class="news"> </view>
+        <view class='arrow'></view>
+      </view>
+    </view>
+  </button>
+   <!-- <view class='item'>
+    <view class='content'>
+      <view class='contentLeft' bindtap='changeToActivity'>
+        <image class='icon' src=""></image>
+        <view class='title'>
+          <text>犁小农活动</text>
+          <view>新年活动所有水果85折优惠</view>
+        </view>
+      </view>
+      <view class='contentRight'>
+        <view wx:if="{{activityCount > 0}}"  class="news"> {{logisticsCount}}</view>
+        <view class='arrow'></view>
+      </view>
+    </view>
+  </view> -->
+   <!-- <view class='item'>
+    <view class='content'>
+      <view class='contentLeft' bindtap='changeToLogistics'>
+        <image class='icon' src=""></image>
+        <view class='title'>
+          <text>物流助手</text>
+          <view>订单485893245已发货</view>
+        </view>
+      </view>
+      <view class='contentRight'>
+        <view wx:if="{{logisticsCount > 0}}"  class="news"> {{logisticsCount}}</view>
+        <view class='arrow'></view>
+      </view>
+    </view>
+  </view> -->
+   <view class='item'>
+    <view class='content'>
+      <view class='contentLeft' bindtap='changeToNotice'>
+        <view class='icon-news icon' ></view>
+        <view class='title'>
+          <text>通知消息</text>
+          <view>您有1件商品未付款</view>
+        </view>
+      </view>
+      <view class='contentRight'>
+        <view wx:if="{{noticeCount > 0}}"  class="news"> {{logisticsCount}}</view>
+        <view class='arrow'></view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- <view class='item' wx:for="{{content}}" wx:key="{{index}}">
+    <view class='content'  bindtap='{{item.bindtap}}'>
+      <view class='contentLeft'>
+        <image class='icon' src="{{item.iconSrc}}"></image>
+        <view class='title'>
+          <text>{{item.title}}</text>
+          <view>{{item.introduce}}</view>
+        </view>
+      </view>
+      <view class='contentRight'>
+        <view wx:if="{{item.newsNum > 0}}"  class="news"> {{item.newsNum}}</view>
+        <view class='arrow'></view>
+      </view>
+    </view>
+  </view> -->
+   <view class='bottomLogo' style='position:absolute;bottom:0;'>
+        <image  mode='widthFix' style="width:160px;" src="../../Img/copyright.png"></image>
+    </view>
+</view>

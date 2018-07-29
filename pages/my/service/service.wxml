@@ -1,0 +1,26 @@
+<view class="container">
+  <view class='goodsList'>
+    <view class='goodsItem' >
+      <image class='shopImg' mode='widthFix' wx:if="{{goodsInfo.productImagePath}}" src="{{imageHost + goodsInfo.productImagePath}}"></image>
+        <view class='shopInfo'>
+          <view class='shopName'>{{goodsInfo.productName}}</view>
+          <view class='shopNum'>{{goodsInfo.productUnit}}</view>
+           <view class='shopName'>{{goodsInfo.productTitle}}</view>
+        </view>
+    </view>
+  </view>
+  <view class='select' bindtap='changeToRefund' data-index="0">
+    <view>
+      <view class='selectTitle'>仅退款</view>
+      <view>坏单包赔，商家将快速响应消费者需求 拷贝</view>
+    </view>
+    <view class='arrow'></view>
+  </view>
+   <view class='select' style='border:0;' bindtap='changeToRefund' data-index="1">
+    <view>
+      <view class='selectTitle'>退货退款</view>
+      <view>坏单包赔，商家将快速响应消费者需求 拷贝</view>
+    </view>
+    <view class='arrow'></view>
+  </view>
+</view>

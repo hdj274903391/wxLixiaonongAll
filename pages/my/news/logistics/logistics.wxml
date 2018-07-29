@@ -1,0 +1,31 @@
+<view class='container'>
+<view class='cartsNullView' wx:if="{{content.length === 0}}" bindtap='handleToIndex'>
+    <image mode='widthFix' src='../../../Img/orderNull.png' class='cartsNull'></image>
+    <text style='font-size:14px;color:#808080;margin-top:20px;'>您还没有买过东西哦</text>
+    <view class='shop'>去逛逛</view>
+  </view>
+  <view class='list'>
+    <view class='item' wx:for="{{content}}" wx:key="{{index}}">
+      <view class='itemTime'>{{item.time}}</view>
+      <view class='content'>
+        <view class='contentTitle'>
+         {{item.title}}
+        </view>
+        <view class='contentInfo'>
+          <image class='contentInfoImg'></image>
+          <view class='contentInfoRight'>
+            <view class='shopInfo'>
+              <view class='shopsName'>{{item.shopName}}</view>
+              <text>X{{item.shopNum}}</text>
+            </view>
+            <text class='shopsNum'>{{item.unit}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+  </view>
+  <view class='bottomLogo'>
+        <image  mode='widthFix' style="width:160px;" src="../../../Img/copyright.png"></image>
+    </view>
+</view>

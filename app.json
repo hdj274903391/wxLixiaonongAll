@@ -1,0 +1,84 @@
+{
+  "pages": [
+
+    "pages/index/index",
+    "pages/index/topic/topic",
+    "pages/login/login",
+    "pages/kinds/kinds",
+    "pages/my/my",
+    "pages/shop/shop",
+    "pages/shop/selfGet/selfGet",
+    "pages/index/search/searchResult/searchResult",
+    "pages/index/shopKinds/shopKinds",
+    "pages/index/origin/origin",
+    "pages/index/search/search",
+    "pages/logs/logs",
+    "pages/my/order/evaluate/evaluate",
+    "pages/my/set/set",
+    "pages/my/userInfo/userInfo",
+    "pages/shopDetail/shopDetail",
+    "pages/shopDetail/evaluate/evaluate",
+    "pages/my/set/aboutUs/aboutUs",
+    "pages/my/set/suggest/suggest",
+    "pages/my/userInfo/setPassword/setPassword",
+    "pages/my/order/order",
+    "pages/my/order/willPayOrder/willPayOrder",
+    "pages/my/address/address",
+    "pages/my/address/addAddress/addAddress",
+    "pages/my/order/groupShopDetail/groupShopDetail",
+    "pages/my/news/news",
+    "pages/my/news/notice/notice",
+    "pages/shop/newOrder/newOrder",
+    "pages/my/news/logistics/logistics",
+    "pages/my/news/activity/activity",
+    "pages/my/service/refund/refund",
+    "pages/my/service/service",
+    "pages/my/cards/cards",
+    "pages/groupShop/groupShop",
+    "pages/my/cards/cardsList/cardsList",
+    "pages/index/willSale/willSale",
+    "pages/my/address/selectOrigin/selectOrigin",
+    "pages/my/wallet/money/money",
+    "pages/my/wallet/score/score",
+    "pages/my/wallet/wallet",
+    "pages/my/wallet/accountList/accountList",
+    "pages/shop/newOrder/invoices/invoices",
+    "pages/index/cooperation/cooperation",
+    "pages/my/order/afterSale/afterSale"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "犁小农",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#ff5d5e",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "pages/Img/home.png",
+        "selectedIconPath": "pages/Img/home1.png"
+      },
+      {
+        "pagePath": "pages/kinds/kinds",
+        "text": "分类",
+        "iconPath": "pages/Img/kinds.png",
+        "selectedIconPath": "pages/Img/kinds1.png"
+      },
+      {
+        "pagePath": "pages/shop/shop",
+        "text": "购物车",
+        "iconPath": "pages/Img/shop.png",
+        "selectedIconPath": "pages/Img/shop1.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "pages/Img/my.png",
+        "selectedIconPath": "pages/Img/my1.png"
+      }
+    ]
+  }
+}

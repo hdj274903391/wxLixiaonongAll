@@ -1,0 +1,267 @@
+page{
+  background: #f0f0f0;
+}
+.container{
+  width: 100%;
+  padding: 0;
+  padding-top: 41px;
+  background: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+}
+.swiper{
+  width: 100%;
+  height: 1000px;
+}
+.swiperItem{
+  width: 100%;
+}
+.navigation{
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 15px;
+  position: fixed;
+  top: 1px;
+  background: white;
+  z-index: 999;
+}
+.navigationItem{
+  height: 38px;
+  line-height: 38px;
+}
+.navigationItemActive{
+  border-bottom-width:3px;
+  border-bottom-style: solid; 
+  height: 38px;
+  line-height: 38px;
+  border-color: #ff4c4d;
+  color: #ff4c4d;
+}
+.contentList{
+width:100%;margin-top:5px;
+}
+.contentListNull{
+width:100%;margin-top:5px;padding-bottom:20px;height: 100vh;
+}
+.cartsNullView{
+  padding-top: 140px;
+  width: 100%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  padding-bottom: 140px;
+  flex-direction: column;
+}
+.cartsNull{
+  width: 38%;
+}
+
+.orderItem{
+  width: 96%;
+  padding-left:15px;
+ display: flex;
+ flex-direction: column;
+ margin-bottom: 5px;
+ background: white;
+}
+.greenColor{
+  color: #72bf34;
+}
+.greenRed{
+  color:#ff4c4d;
+}
+.ordertitle,.pay{
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+  color: #464646;
+  border-bottom: 1px solid #f0f0f0;
+}
+.ordertitle>view{
+  margin-right: 15px;
+}
+.shop{
+  height: 108px;
+  width: 96%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f0f0f0;
+  box-sizing: border-box;
+  padding-right: 4%;
+}
+.shopImg{
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+  background: #f0f0f0;
+  flex-shrink: 0;
+  margin-right:10px;
+  border: 1px solid #f0f0f0;
+}
+.orderItemImageList{
+   overflow: hidden;
+   white-space:nowrap;
+   display: flex;
+   width: 82%;
+}
+.orderItemImageList>image,.orderItemImageList>view{
+  flex-shrink: 0;
+  width:28%
+}
+.orderItemImageList>view{
+  font-size:15px;
+  display: flex;
+  height: 164rpx;
+  flex-direction: column;
+  justify-content: center;
+}
+.shopInfo{
+  flex-grow: 2;
+  font-size: 15px;
+  padding-left: 15px;
+}
+.shopName{
+  width: 175px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 20px;
+  display: block;
+  line-height: 20px;
+  margin-bottom: 10px;
+}
+.shopInfo>view:nth-child(1){
+  margin-bottom: 5px;
+}
+.zhouqigou{
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  font-size: 9px;
+  color: white;
+  text-align: center;
+  line-height: 20px;
+   background: #dabb96;
+   border-radius: 2px;
+   flex-shrink: 0;
+   margin-right: 5px;
+ 
+}
+.shopInfo>view{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.shopNum{
+  font-size: 24rpx;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  width: 16%;
+}
+.shopNum>text{
+  white-space: nowrap;
+}
+.pay{
+  border: 0px;
+  font-size: 15px;
+}
+.payBtn{
+  width: 90px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  background: linear-gradient(to right,#fe8657,#ff4c4d);
+  border-radius:3px; 
+  margin-right: 15px;
+  color: white;
+}
+.willGetBtn,.willEvaluateBtn{
+  display: flex;
+}
+.logisticsBtn,.againBuy{
+  width: 90px;
+  height: 33px;
+  line-height: 35px;
+  text-align: center;
+  border: 1px solid #464646;
+  margin-right: 15px;
+  border-radius: 2px;
+  font-size: 15px;
+}
+.sureBtn{
+  width: 90px;
+  height: 33px;
+  line-height: 35px;
+  text-align: center;
+  border: 1px solid #ff4c4d;
+  color: #ff4c4d;
+  margin-right: 15px;
+  border-radius: 2px;
+}
+.time{
+  width: 100%;
+  background: rgba(00, 00, 00, 0.2);
+  height: calc(100vh - 41px);
+  position: fixed;
+  top: 41px;
+  z-index: 2;
+}
+.timeContent{
+  width: 92%;
+  height: 200px;
+  background: white;
+  border-radius: 5px;
+  position: relative;
+  margin: 0 auto;
+  top: 200px;
+}
+.timeTitle{
+  width: 92%;
+  height: 45px;
+  line-height: 45px;
+  border-bottom: 1px solid #f0f0f0;
+  float: right;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+}
+.timeList{
+  width: 88%;
+  height: 155px;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  margin: 0 auto;
+  align-content: flex-start;
+}
+.timeItem1{
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 75px;
+  height: 40px;
+  justify-content: center;
+  margin-top: 20px;
+  color: greenyellow;
+}
+.timeItem{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 75px;
+  height: 40px;
+  justify-content: center;
+  margin-top: 20px;
+}
+.timeInfo{
+  font-size: 12px;
+}

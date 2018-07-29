@@ -1,0 +1,88 @@
+<view class='container'>
+    <swiper autoplay="true"  class='bannerSwiper'>
+        <swiper-item wx:for="{{3}}" wx:key="index">
+          <image  class="bannerImg" mode='widthFix'/>
+        </swiper-item>
+  </swiper>  
+  <view class='bannerBottom'>
+    <view class='bannerBottomPrice'>
+      ¥18.00
+      <text class='bannerBottomCanclePrice' style=''>¥15.00</text>
+    </view>
+    <view class='bannerBottomTime'>
+      <view class='bannerBottomTimeTitle'>距离拼团结束还剩:</view>
+      <view class='bannerBottomTimeInfo'>
+        <text style='font-weight: 600'>6</text>
+        天 05:17:22
+      </view>
+    </view>
+  </view>
+  <view class='goodsInfo'>
+    <view class='goodsName'>华圣陕西优质红富士6个原箱200g以上/个</view>
+    <view class='goodsCollect' bindtap='handleIsCollect'>
+      <text class="{{isCollect?'icon-star':'icon-activeStar'}}" style='font-size:15px;margin-right:5px;'></text>
+      收藏
+    </view>
+  </view>
+  <view class='group'>
+    <view class='groupTitle'>
+      <view style='margin-left:15px;'>已有132人拼团</view>
+      <view style='border-left:1px solid #cdcdcd;margin-left:5px;padding-left:5px;'>山东的李先生刚刚开团啦</view>
+    </view>
+    <view class='groupList'>
+        <view class='groupItem' wx:for="{{2}}">
+          <view class='groupItemLeft'>
+            <image class='groupPhoto'></image>
+            <view class='groupName'>x***yo的团</view>
+          </view>
+          <view  class='groupItemRight'>
+            <view class='groupItemInfo'>
+              <view>还差1人成团</view>
+              <view class='groupItemInfoTime'>还剩05:17:53</view>
+            </view>
+            <view class='groupItemBtn'>去参团</view>
+          </view>
+        </view>
+    </view>
+  </view>
+  <view class='evaluate viewBetween' style='justify-content:flex-end' bindtap='handleToEvaluate'>
+   <view style='width:96%;height:100%;align-items:center;display:flex;justify-content:space-between;border-bottom:1px solid #dcdcdc;'>
+     <view>评价()</view>
+    <view class='evaluateRight' >
+      <view class='evaluateNum'>0% 好评</view>
+      <view class='arrow'></view>
+    </view>
+   </view>
+  </view> 
+  <view class='evaluateList' >
+    <view class='evaluateItemInfo'>
+      <image class='ItemPhoto' src='../Img/userImg.jpg'></image>
+      <view class='ItemInfoDetail'>
+        <view style='color:#454545;height:20px;'>
+          <text>139****5431</text>
+          <view class='star'>
+              <text class='.icon-activeStar' wx:for="{{4}}" wx:key="{{index}}"></text>
+              <text class='.icon-star' wx:for="{{1}}" wx:key="{{index}}"></text>  
+          </view>
+        </view>
+        <view style='font-size:10px;color:#464646;'>2017.12.16  19 : 43</view>
+      </view>
+    </view>
+    <text class='evaluateContent'>很新鲜！个头超大，孩子很爱吃，还会继续买！</text>
+    <image class='evaluateImg' src='../Img/goods.png'></image>
+  </view>
+  <view class='bottom'>
+    <view class='bottomService'>
+      <text class='icon-service'></text>
+      <text style='font-size:9px;'>联系客服</text>
+    </view>
+    <view class='bottomSelfPay'>
+      <view>¥18.00</view>
+      <view>联系客服</view>
+    </view>
+    <view class='bottomBuildGroup'>
+      <view>¥18.00</view>
+        <view>联系客服</view>
+      </view>
+  </view>
+</view>

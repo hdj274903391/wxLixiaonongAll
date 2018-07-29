@@ -1,0 +1,89 @@
+<view class="contaier">
+  <view style='width:100%;height:45px;background:white;'>
+     <view class='payInfo'>
+       <view >开具发票</view>      
+       <view >
+         <switch checked='{{orderIsInvoice}}' bindchange="handleIsUseInvoice"/>
+        </view>
+      </view>
+  </view>
+  <!-- <view class='allList'  style='display:none;'>
+    <view class='list' bindtap='invoicesTypeSelect'>
+        <view>
+          <text style='color:#969696'>发票类型</text>
+          <text style='margin-left:5px;'>{{invoicesTypeList[invoicesTypeSelect]}}</text>
+        </view>
+        <view class='arrow'></view>
+    </view>
+    <view class='introduce' style=''>
+       电子普通发票是税局认可的有效凭证，其法律效力、基本用途及使用规定同纸质发票。 
+    </view>
+  </view> -->
+  <view class='allList'  wx:if="{{orderIsInvoice}}">
+    <view class='list'>
+        <view>
+          <text style='color:#969696'>*发票抬头</text>
+          <view style='display: inline-block;'>
+            <view class='{{invoiceHeader === "1"? "topBtnSelect":"topBtn"}}' bindtap='handlePeopleType' data-index="1">个人</view>
+            <view class='{{invoiceHeader === "2"? "topBtnSelect":"topBtn"}}' bindtap='handlePeopleType' data-index="2">单位</view>
+          </view>
+        </view>
+    </view>
+    <view class='list' wx:if="{{invoiceHeader === '2'}}">
+       <input style=' width: 100%;' type='text' bindinput="handleCompanyName" placeholder='请输入单位名称' placeholder-style='color:#b3b3b3'></input>
+    </view>
+     <view class='list' wx:if="{{invoiceHeader === '1'}}">
+       <input style=' width: 100%;' type='text' bindinput='handleUserName' placeholder='请输入个人或姓名' placeholder-style='color:#b3b3b3'></input>
+    </view>
+    <view class='list' wx:if="{{invoiceHeader === '2'}}">
+        <input type='text' style=' width: 100%;'  bindinput='handleUserCardNumber' placeholder='*纳税人识别号 或 统一社会信用代码' placeholder-style='color:#b3b3b3'></input>
+    </view>
+    <view class='list'>
+        <view>
+          <text style='color:#969696'>发票内容</text>
+          <text style='margin-left:5px;'>明细</text>
+        </view>
+      
+    </view>
+  </view>
+  <view class='allList'style="display:none">
+    <view class='list'>
+        <view>
+          <text style='color:#969696'>*收票人手机号</text>
+          <text></text>
+        </view>
+       
+    </view>
+    <view class='list'>
+        <view>
+          <text style='color:#969696'>收票人邮箱</text>
+          <text style='margin-left:5px;'>¥46.00</text>
+        </view>
+       
+    </view>
+  </view>
+  <view class='notice'>
+    <text>发票须知:</text>
+    <view>1.依照税局最新开票法规，纸质普通发票和电子普通发票，开具内容均为明细</view>
+    <view> 2.开票金额为用户实际支付的金额（不含红包，优惠券等不支持该发票类型的商品实付金额）</view>
+    <view>3.未随商品寄出的纸质发票会在发货后15-30个工作日单独寄出</view>
+    <view>4.增值税专用发票将会在所有商品发货后15-30个工作日单独寄出</view>
+    <view>5.单笔订单只支持开具一种类型的发票</view>
+    <view class='noticeView'>
+      <view class='noticeBtn'>发票须知</view>
+    </view>
+  </view>
+  <view class='sureBtn' bindtap='handleToSure'>保存</view>
+<!--发票类型  -->
+  <view class='marker' wx:if="{{invoicesTypeSelectDisplay}}">
+    <view class='invoicesType'>
+      <view class='list' >
+        <text style='color:#969696'>发票类型</text>
+        <view style='color:#969696' bindtap='invoicesTypeSelect'> 确定</view>
+      </view>
+      <view class='invoicesTypeList'>
+        <view  wx:for="{{invoicesTypeList}}" wx:key="index" class="{{invoicesTypeSelect == index?'invoicesTypeSelect':'' }}" bindtap="handleInvoicesTypeSelect" data-index="{{index}}">{{item}}</view>
+      </view>
+    </view>
+  </view>
+</view>

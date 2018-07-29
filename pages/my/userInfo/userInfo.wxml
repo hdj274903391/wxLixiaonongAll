@@ -1,0 +1,40 @@
+<view class='container'>
+   <view class='infoList'>
+   <!-- <view class='infoItem' style="height:85px;"  bindtap='previewImage' > -->
+    <view class='infoItem' style="height:85px;" >
+      <text>头像</text>
+      <image class='userPhoto' src="{{ userInfo.memberAvatarPath}}"></image>
+    </view>
+    <view class='infoItem'>
+      <text>昵称</text>
+      <input placeholder='{{userInfo.memberNickName}}' bindinput='handleNickName'  placeholder-style='color:#464646;'></input>
+    </view>
+    <view class='infoItem'>
+      <text>性别</text>
+       <view wx:if="{{!selectedSex}}" bindtap="handleRadioDisplay" class='defautSex'>{{userInfo.memberGender}}</view> 
+      <radio-group  wx:if="{{selectedSex}}" class="radio-group" >
+        <label class="radio" wx:for="{{sex}}"  wx:key="index"  >
+          <radio data-value="{{item.value}}" checked="{{item.checked}}"  bindtap="handleSelectSex"/>{{item.value}}
+        </label>
+      </radio-group>
+    </view>
+    <view class='infoItem'>
+      <text>生日</text>
+      <picker mode="date" value="{{userInfo.memberBirthday}}" start="1980-09-01" end="2017-09-01" bindchange="handlebInputBirthday">
+        <view class="picker">
+          {{userInfo.memberBirthday}}
+        </view>
+      </picker>
+      <!-- <view>{{userInfo.memberBirthday}}</view> -->
+    </view>
+    
+  </view>
+  <!-- <view class='infoItem' style='border-top:8px solid #f0f0f0;position:absolute;top:224px;' bindtap='changeToSetPassword'>
+      <text style='margin-left:15px;'>修改密码</text>
+      <view class='infoName'>
+        <text>设置密码</text>
+        <view class='arrow'></view>
+      </view>
+  </view> -->
+  <view class='keep' bindtap='handleSubmitUserInfo'>保存</view>
+</view>

@@ -1,0 +1,151 @@
+page{
+  background: #f0f0f0;
+}
+.container{
+  border-top: 1px solid #f0f0f0;
+  background: white;
+}
+.goodsList{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contentPrice{
+  display: flex;
+  align-items: center;
+}
+.goodsItem{
+  width: 100%;
+  display: flex;
+  padding: 15px 0;
+  padding-left: 30px;
+  border-bottom: 5px solid #f0f0f0;
+}
+.contentInputTitle{
+  display: inline-block;
+  white-space: nowrap;
+}
+.shopImg{
+  width:90px;
+  height: 90px;
+  border-radius: 5px;
+  background: #f0f0f0; 
+  border: 1px solid #f0f0f0;
+}
+.shopInfo{
+  display: flex;
+  margin-left: 10px;
+  flex-direction: column;
+   font-size: 30rpx;
+  flex-grow: 2;
+  width: 60%;
+}
+.shopName{
+ margin-top: 2px;
+}
+.shopNum{
+  font-size: 12px;
+  color: #787878;
+  margin-top: 5px;
+}
+.content{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 5px solid #f0f0f0;
+} 
+.content>view{
+   height: 40px;
+  width: 92%;
+  font-size: 15px;
+  line-height: 40px;
+}
+.contentTitle{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.arrow{
+  border-top: 1px solid #cdcdcd;
+  border-right: 1px solid #cdcdcd;
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+  display: inline-block;
+  margin-left: 10px;
+}
+#contentNotice{
+   width: 100%;
+  background: #f0f0f0;
+ padding-left: 8%;
+ height: 30px;
+ line-height: 30px;
+ font-size: 12px;
+ color: #959595;
+}
+.contentInput{
+  display: flex;
+  align-items: center;
+}
+.addTitle{
+  width: 100%;
+  padding-left:8%; 
+  font-size: 15px;
+  margin-top: 10px;
+}
+.addTitle>text{
+  color: #969696;
+}
+.addImg{
+  width: 92%;
+  float: right;
+
+}
+.addBtn{
+  width: 75px;
+  height: 75px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+.tui-preview-img{
+ width: 200rpx;
+ height: 120rpx;
+}
+.submit{
+  width: 90%;
+  height: 35px;
+background: linear-gradient(to right,#fe8657,#ff4c4d);
+  text-align: center;
+  line-height: 35px;
+  margin: 5px 15px;
+  border-radius: 2px;
+  color: white;
+}
+.bottom{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 15px;
+  position: absolute;
+  bottom: 20px;
+}
+.addBtn{
+  width: 75px;
+  height: 75px;
+  margin-bottom: 5px;
+}
+.tui-preview-img{
+ width: 75px;
+ height: 75px;
+ margin-bottom:5px;
+}
+.tui-content{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px 10px;
+}
+.tui-content>image{
+  margin-right:5px;
+}

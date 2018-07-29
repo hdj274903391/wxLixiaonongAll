@@ -1,0 +1,29 @@
+<form>
+  <view class="container">
+    <view class='goodsList'>
+      <view class='goodsItem'>
+        <image class='shopImg' mode='widthFix' wx:if="{{goodsInfo.productImagePath}}" src="{{imageHost + goodsInfo.productImagePath}}"></image>
+        <view class='shopInfo'>
+          <view class='shopName'>{{goodsInfo.productName}}</view>
+          <view class='shopNum'>{{goodsInfo.productUnit}}</view>
+           <view class='shopName'>{{goodsInfo.productTitle}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='content'>
+      <!-- <view class='contentTitle'><text>退款原因</text>  <view> 请选择<view class='arrow'></view></view></view> -->
+      <view class='contentPrice'>退款金额:¥ <input placeholder='{{toatlPrice}}' bindinput='handleRefundPrice'></input></view>
+        <view id='contentNotice'>最多 ¥ {{toatlPrice}}</view>
+        <view class='contentInput'><text class='contentInputTitle'>退款原因：</text> <input placeholder='选填' bindinput='handleInputContent'></input> </view> 
+    </view>
+      <view class='addTitle'>上传凭证 <text>（最多6张）</text> </view> 
+
+      <view class="tui-content">
+          <image class='addBtn' bindtap='previewImage' src="/pages/Img/addImg.png"  ></image>
+          <image class="tui-preview-img" wx:for="{{previewImageArr}}" bindtap="changePreview" src="{{item}}" wx:key="{{index}}"></image>
+        </view>
+  </view>
+  <view class='bottom'> 
+        <button class='submit' bindtap='handleSubmit' form-type="submit">提交</button>
+  </view>
+</form>

@@ -1,0 +1,6 @@
+<view class='container'>
+  <image class='logo' src="../../../Img/logo.png"></image>
+  <view class='bottom'>评价我们</view>
+  <view class='bottom'>隐私申明</view>
+  <text class='info'>犁小农公司版权所有 © 2017-2018</text>
+</view>

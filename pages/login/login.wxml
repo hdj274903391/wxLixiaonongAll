@@ -1,0 +1,17 @@
+ 
+    <view bindsubmit="" class='form'>
+       <view class='content'>
+        <image class='logo' mode='widthFix' src="../Img/logoCode.png"></image>
+        <view class='inputView'>
+          <input placeholder='请输入手机号' bindinput='phoneNumberInput' placeholder-style='color:#959595'></input>
+        </view>
+        <view class='inputView' style='margin-top:8px;'>
+          <input placeholder='请输入验证码' bindinput='captchaCodeInput' placeholder-style='color:#959595'></input>
+          <view class='send' bindtap="SendCaptcha">发送验证码</view>
+        </view>
+        <view  bindtap='formBindsubmit' class='sure'>完成</view >
+      </view>
+    </view>
+    <view class='mark' wx:if="{{auth}}">
+       <button open-type="getUserInfo" bindgetuserinfo='handleGetUserInfo'>允许授权</button> 
+    </view>

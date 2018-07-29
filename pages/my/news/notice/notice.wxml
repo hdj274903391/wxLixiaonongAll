@@ -1,0 +1,21 @@
+<view class='container'>
+  <view class='cartsNullView' wx:if="{{content.length === 0}}" bindtap='handleToBack'>
+    <image mode='widthFix' src='../../../Img/noticeNull.png' class='cartsNull'></image>
+    <text style='font-size:14px;color:#808080;margin-top:20px;'>您还没有收到任何消息</text>
+  </view>
+  <view class='list'>
+    <view class='item' wx:for="{{content}}" wx:key="{{index}}">
+      <view class='itemTitle'>昨天 12:00{{item.time}}</view>
+      <view class='itemContent'>
+        <view class='itemContentLeft'>
+          <text class='contentTitle'>{{item.title}}</text>
+          <view>{{item.introduce}}</view>
+        </view>
+        <view class='arrow'></view>
+      </view>
+    </view>
+  </view>
+  <view class='bottomLogo'>
+        <image  mode='widthFix' style="width:160px;" src="../../../Img/copyright.png"></image>
+    </view>
+</view>

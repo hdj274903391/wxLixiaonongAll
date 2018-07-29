@@ -1,0 +1,20 @@
+<view class='container'>
+  <view class='cardsKind'>
+    <view wx:for="{{cards}}" class="{{cardsKindSelect == index?'cardsKindItem':''}}"  wx:key="index" data-index="{{index}}" bindtap='handeChangeCardsKind'>
+      <view class='cardsKindItemTitle'><text class='cardsKindItemNum'>{{item.num}}</text>张</view>
+      <view class='cardsKindItemType'>{{item.title}}</view>
+    </view>
+  </view>
+  <view class='cardsList'>
+    <view class='cardsItem' wx:for="{{cardsContent}}" wx:key="index">
+      <image mode='widthFix' class='cardsItemImg' src="{{imageHost + item.couponImagePath}}"></image>
+      <view class='cardsItemInfo'>
+        <view >{{item.couponDescription}}{{item.couponName}}</view>
+        <view class='cardsItemTime'>{{item.couponValidTime}}— {{item.couponExpireTime}}</view>
+      </view>
+    </view>
+  </view>
+
+
+
+</view>

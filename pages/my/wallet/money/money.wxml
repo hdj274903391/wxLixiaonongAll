@@ -1,0 +1,44 @@
+<view class='container'>
+  <view class='containerTop'>
+    <view class='select'>
+      <view  wx:for="{{selectItem}}" bindtap='select' wx:key="index" class="{{selectColor== index?'selectItem2':'selectItem1'}}" data-findex="{{index}}">
+        <view class='title'>充值 <text>{{item.rechargeMoney}}</text> 元</view>
+        <view class='giveNum'>送{{item.backMoney}}余额</view>
+      </view>
+      <!-- <view  bindtap='select' class="{{selectColor==2?'selectItem2':'selectItem1'}}" data-findex="2">
+        <view class='title'>充值 <text>10</text> 元</view>
+        <view class='giveNum'>赠送红包金额3元</view>
+      </view>
+      <view  bindtap='select' class="{{selectColor==3?'selectItem2':'selectItem1'}}" data-findex="3">
+        <view class='title'>充值 <text>20</text> 元</view>
+        <view class='giveNum'>赠送红包金额7元</view>
+      </view>
+     <view  bindtap='select' class="{{selectColor==4?'selectItem2':'selectItem1'}}" data-findex="4">
+        <view class='title'>充值 <text>50</text> 元</view>
+        <view class='giveNum'>赠送红包金额18元</view>
+      </view>  -->
+    </view>
+  </view>
+  <view class='list' >
+      <view>
+        <text class="icon-wxPay"></text>
+        <text>微信支付</text>
+      </view>
+       <view class='sure'>
+        <icon   type="success" size="22" class="selectPay" />
+       </view> 
+  </view>
+  <!-- <view class='list'style="border-width:0px;" bindtap='selectPay'   data-pay="2">
+      <view >
+         <text class="icon-zfbpay"></text>
+        <text>支付宝支付</text>
+      </view>
+      <view class='sure' >
+        <icon  type="success" size="22" class="{{selectPay==2?'selectPay':'selectPayNone'}}" />
+      </view>
+  </view> -->
+  <view class='bottom'>
+    <view class='recharge' bindtap='handlePay'>充值</view>
+  </view>
+   
+</view>

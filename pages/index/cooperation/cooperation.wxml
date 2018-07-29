@@ -1,0 +1,3 @@
+<view class='container'>
+  <image mode='widthFix' style='width:100%;' src="{{imageHost + info.companyLogoImagePath}}"></image>
+</view>

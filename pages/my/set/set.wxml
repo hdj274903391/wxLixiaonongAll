@@ -1,0 +1,24 @@
+<view class='container'>
+  <view class='content'>
+    <!-- <view class='contentItem'>
+      <text>清除缓存</text>
+      <view>0.0M</view>
+    </view> -->
+    <view class='contentItem' bindtap='changeToSuggest'>
+      <text>意见反馈</text>
+      <view class='arrow'></view>
+    </view>
+    <view class='contentItem' bindtap='changeToAboutUs'>
+      <text>关于我们</text>
+      <view class='arrow'></view>
+    </view>
+    <button open-type="share" class='contentItem'>
+      <text>分享小程序</text>
+      <view class='arrow'></view>
+    </button>
+  </view>
+  <view class='out' bindtap='goOut'>退出登录</view>
+  <view class='bottomLogo' style='position:absolute:bottom;'>
+      <image  mode='widthFix' style="width:160px;" src="../../Img/copyright.png"></image>
+  </view>
+</view>

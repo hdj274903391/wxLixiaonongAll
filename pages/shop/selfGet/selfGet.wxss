@@ -1,0 +1,120 @@
+page{
+  background: #f0f0f0;
+}
+.addressList{
+  margin-top: 5px;
+  background: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+}
+.phoneNum{
+  height: 18px;
+  line-height: 18px;
+}
+.addressItem{
+  width: 100%;
+  display: flex;
+  height: 70px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0;
+  padding:0 4%;
+  box-sizing: border-box;
+}
+.addressItemInfo{
+  display: flex;
+  height: 45px;
+  font-size: 15px;
+
+}
+.addressItemInfo>view{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.addressItemTitle{
+  width: 60px;
+  overflow: hidden;
+   white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.addressItemName{
+  width: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.addressDetailName{
+  width:215px;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+height: 20px;
+
+}
+.defalut{
+  background: #ff4c4d;
+  color: white;
+  font-size: 10px;
+  text-align: center;
+  width: 35px;
+  height: 15px;
+  line-height: 15px;
+}
+.addressDetail{
+  margin-left: 10px;
+  width: 215px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+}
+
+.success{
+  width: 15px;
+  height: 15px;
+  border: 1px solid #f0f0f0;
+  border-radius: 50%;
+  margin-top:2px;
+}
+.success>icon{
+  position: absolute;
+
+}
+.addressItemDefault{
+  display:flex;
+  height:40px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.distance{
+  font-size: 12px;
+  color: #979797;
+  line-height: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 65px;
+  text-align: center;
+}
+.sure{
+  width: 94%;
+  background: linear-gradient(to right,#fe8657,#ff4c4d);
+  height: 48px;
+  text-align: center;
+  line-height: 48px;
+  font-size: 15px;
+  color: white;
+}
+.bottom{
+  width: 100%;
+   position: absolute;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

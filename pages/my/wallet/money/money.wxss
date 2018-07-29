@@ -1,0 +1,141 @@
+
+.container{
+  width: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-top: 1px solid #cfcdcd;
+ 
+}
+.containerTop{
+  width: 100%;
+  border-bottom: 10px solid #f0f0f0;
+}
+.select{
+   margin: auto;
+  margin-top: 20px;
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 215px;
+ 
+}
+/* .selectItem{
+  width: 48%;
+  height: 90px;
+  border-radius: 5px;
+
+  margin-bottom: 15px;
+  font-size: 15px;
+} */
+.selectItem1{
+  background: #f0f0f0;
+   border: 1px solid transparent;
+  width: 48%;
+  height: 90px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+.selectItem2{
+  background: #faefec;
+  border: 1px solid #ff4c4d;
+  color: #ff4c4d;
+   width: 48%;
+  height: 90px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+
+.title{
+  margin-top: 10px;
+   margin-left: 15px;
+}
+.title>text{
+  font-size: 24px;
+}
+.giveNum{
+  margin-left: 15px;
+}
+.selectItem1 .giveNum{
+  color: #969696;
+ 
+}
+.list{width: 90%;
+  border-bottom:1px solid #f0f0f0;
+  height: 45px;font-size: 15px;
+  line-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+/* .list>view>image{
+  margin-right: 15px;
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+} */
+.list>view>text:nth-child(1){
+  font-size: 25px;
+}
+.list>view>text{
+  vertical-align: middle;
+  margin-right: 10px;
+  color:#999 ;
+}
+.sure{
+  width: 20px;
+  height: 20px;
+  border-radius:50%; 
+  
+  position: relative;
+  border: 1px solid #999;
+}
+.selectPay{
+  position: absolute;
+  top: -9px;
+  right: -1px;
+  display: block;
+}
+.selectPayNone{
+  position: absolute;
+  top: -9px;
+  right: 0px;
+  display: none;
+}
+.detail{
+  width: 6px;
+  height: 6px;
+  border-top: 1px solid #999;
+  border-right: 1px solid #999;
+  transform: rotate(45deg);
+  margin-right: 30px;
+  display: inline-block;
+}
+.recharge{
+  background: linear-gradient(to right,#fe8657,#ff4c4d);
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  line-height: 40px;
+  height: 40px;
+  width: 92%;
+
+}
+.bottom{
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between
+}
+
+
+

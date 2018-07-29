@@ -1,0 +1,25 @@
+<view class='container'>
+  <view class='addressList'>
+    <view class='addressItem' wx:for="{{addressList}}" wx:key="index" data-index="index" bindtap='handleChangeFault' data-storeId="{{item.storeId}}">
+      <view class='addressItemInfo'>
+        <view class='addressItemTitle'>
+          <view class='addressItemName'>{{item.storeName}}</view>
+          <view class='defalut' wx:if="{{item.memberStoreIsDefault}}">默认</view>
+        </view>
+        <view class='addressDetail'>
+      <view class='addressDetailName'>{{item.storeProvinces}}{{item.storeCity}}{{item.storeArea}}{{item.storeAddress}}</view>
+          <view class='phoneNum'>{{item.storeTel}}</view>
+        </view>
+      </view>
+      <view class='addressItemDefault'>
+        <view class='success'  data-index="{{index}}">
+            <icon wx:if="{{item.memberStoreIsDefault}}" type="success" size="15" color="red"/>
+        </view>
+         <view class='distance'>{{item.storeInstance}}</view> 
+      </view>
+    </view>
+  </view>
+   <!-- <view class='bottom'>
+    <view class='sure'  bindtap='handleUpdate' >保存</view>  
+  </view> -->
+</view>

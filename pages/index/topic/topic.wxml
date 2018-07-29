@@ -1,0 +1,50 @@
+<view class='container'>
+  <!-- <swiper indicator-dots="true" autoplay="true" class='bannerSwiper'>
+    <swiper-item wx:for="{{bannerList}}" wx:key="index">
+      <image class="bannerImg" src="{{imageHost + item.productImagePath}}" mode='widthFix'/>
+    </swiper-item>
+  </swiper> -->
+  <image class='bannerImg'  lazy-load='true' src="{{imageHost + bannerImg}}" mode='widthFix'></image>
+  <view class='otherGoods'>
+    <view class='otherGoodsItem' wx:for="{{bannerBottomList}}" wx:key="index"  bindtap='handleToShopDetail' data-productId="{{item.productId}}">
+      <image mode='center'  lazy-load='true' class='otherGoodsImg'  src="{{imageHost + item.subjectProductImagePath}}"></image>
+      <view class='otherGoodsItemDetail'>
+        <view class='otherGoodsItemInfo'>
+          <view >{{item.productName}}</view>
+          <view>¥{{item.productPrice}} </view>
+        </view>
+        <view class='otherGoodsItemBtn'>去抢购</view>
+      </view>
+    </view>
+  </view>
+  <view class='navigation'>
+    <scroll-view scroll-x  class='navigationPart' wx:if="{{!navigation}}">
+      <view  wx:for="{{navigationList}}" wx:key="index" bindtap='handleChangeNavigationItem' wx:key="index" class="{{current ==index?'first':''}}" data-current="{{index}}"  >{{item}}</view>
+    </scroll-view>
+  </view>
+  <view class='shopList'>
+    <view class='shopItem' wx:for="{{goodsList[current]}}"  wx:key="index"  bindtap='handleToShopDetail' data-productId="{{item.productId}}" >
+      <image mode='widthFix'  lazy-load='true' class='shopImg' src="{{imageHost + item.productImagePath}}"></image> 
+        <view class='shopTitle'>{{item.productName}}</view>
+        <view class='shopIntroudce'>{{item.productTitle}}</view>  
+        <view class='shopPrice'>¥{{item.productPrice}}
+        <!-- /<text class='shopNum'>{{item.productWeight}}{{item.productUnit}}</text> -->
+        </view>
+    </view> 
+  </view> 
+  <view class='center' wx:for="{{navigationListBanner}}" wx:key="index">
+    <view class='centerTitle'>
+      <!-- <text style='font-size:18px;font-weight:600;'>时令鲜果派对</text>
+      <text style='font-size:14px;margin-top:5px;'>满足每日营养需求</text> -->
+      <image style='width:100%'  lazy-load='true' mode='widthFix' src="{{imageHost + item.bannerPath}}"></image>
+    </view>
+    <view class='centerGoodsList'>
+        <view class='centerGoodsItem' wx:for="{{goodsListBanner[index]}}" wx:key="indexSecond">
+          <image mode='widthFix'  lazy-load='true' class='centerGoodsImg' src="{{imageHost + item.productImagePath}}" bindtap='handleToShopDetail' data-productId="{{item.productId}}"></image>
+          <view class='centerGoodsTitle'>{{item.productName}}</view>
+          <view class='centerGoodsPrice'>¥{{item.productPrice}}</view>
+        </view>
+    </view>
+  </view>
+  
+</view>

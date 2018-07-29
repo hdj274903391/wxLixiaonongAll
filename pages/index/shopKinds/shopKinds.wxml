@@ -1,0 +1,29 @@
+<view class="container">
+
+  <scroll-view scroll-x="true"  class='navigation' >
+      <view  wx:for="{{navigationItemChild}}" bindtap='changeIndex' wx:key="{{index}}"  class="{{current === index?'first':''}}" data-current="{{index}}" >{{item.productCategoryName}}</view>
+  </scroll-view>
+  <!-- <view class='search' bindtap='changeToSearch'>
+     <image class='origin' src="../../Img/search.png"></image>
+  </view> -->
+  <swiper bindchange='handleChangeIndex' style='width:100%;height:{{swiperHeight}}px;margin-top:35px;' current="{{current}}" >
+    <swiper-item class='content' wx:for="{{navigationItemChild}}" wx:key="{{index}}">
+      <view class='search' bindtap='changeToSearch'>
+        <text class='icon-search' style='margin:0px 5px;font-size:18px;'></text>
+        <text style='color:#787878;font-size:12px;'>请输入商品名称</text>
+      </view>
+      <text>冷链配送，新鲜直达</text>
+     <view class='shopList'>
+        <view class='shopItem' wx:for="{{goodsList}}" wx:key="{{index}}" bindtap='changeToShopDetail' data-goodsId="{{item.productId}}">
+          <image  mode='widthFix' src="{{imageHost + item.productImagePath }}"></image> 
+          <view class='shopTitle'>{{item.productName}}</view>
+          <!-- <view class='shopIntroudce'>{{item.productTitle}}</view> -->
+          <text class='shopPrice'>¥{{item.productPrice}}
+          <!-- /<text class='shopNum'>{{item.productWeight}}{{item.productUnit}}</text> -->
+          </text>
+        </view>
+      </view> 
+      <view class="show" wx:if="{{showView}}"><image mode='widthFix' src='../../Img/more.png'></image></view>
+    </swiper-item>
+  </swiper>
+</view>

@@ -1,0 +1,17 @@
+<view class='container'>
+  <view class='title'>
+    <text>不使用优惠劵</text>
+    <view class='isUse' bindtap='handleIsUse'>
+       <icon type='success' wx:if="{{isUse}}" color='#ff4c4d' size="20"></icon> 
+    </view>
+  </view>
+   <view class='cardsList'>
+    <view class='cardsItem' wx:for="{{cardsList}}" wx:key="index" bindtap='handleToBack' data-cardsId="{{item.memberCouponId}}" data-cardsName="{{item.couponName}}">
+      <image mode='widthFix' class='cardsItemImg' src="{{ imageHost + item.couponImagePath}}"></image>
+      <view class='cardsItemInfo'>
+        <view >{{item.couponTitle}}</view>
+        <view class='cardsItemTime'>{{item.couponValidTime}}— {{item.couponExpireTime}}</view>
+      </view>
+    </view>
+  </view>
+</view>

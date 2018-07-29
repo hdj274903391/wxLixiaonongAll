@@ -1,0 +1,30 @@
+<view class='container'>
+  <view class='search'>
+   <view class='searchInput'>
+      <text class='icon-search' style='margin:0 5px;'></text>
+      <input bindinput='handleInputContent' type="text" placeholder-style="color:#969696;line-height:33px;" placeholder='请输入商品名称'  class='input' bindconfirm='handleSubmitInput' value="{{inputContent}}"></input>
+      <text bindtap='handleClearInput' class='icon-cancle delate'></text>
+    </view>
+    <text bindtap='handeleToReturn'>取消</text>
+  </view>
+   <view wx:if="{{inputContent != ''}}" class='inputContentList'>
+    <view bindtap='handleChengeToInputContent'  class='inputContentItem' wx:for="{{SearchPromptlist}}" wx:key="index" data-content="{{item.goodsName}}">{{item.goodsName}}</view>
+  </view>
+  <view class='history' wx:if="{{historyList.length > 0}}" style="border-bottom:6px solid #f0f0f0">
+    <text class='historyTitle'>历史记录</text>
+    <text class='icon-delate' style='float:right;margin:5px 10px 0 0' bindtap='handeleDelateHistory'></text>
+    <view class='historyList'>
+      <view class='hisrotyItem' wx:for="{{historyList}}" bindtap='handleChengeToInputContent' data-content="{{item}}" wx:key="{{index}}">{{item}}</view>
+    </view>
+  </view>
+   <view class='history' >
+    <text class='historyTitle'>大家都在搜</text>
+    <view class='historyList hot' style='border-bottom:0px;'>
+      <view class='hisrotyItem' wx:for="{{hotSearchList}}" bindtap='handleChengeToInputContent' data-content="{{item}}" wx:key="{{index}}">{{item}}</view>
+     
+    </view>
+  </view>
+   <view class='bottomLogo' style='position:absolute;bottom:0;background:white;'>
+        <image  mode='widthFix' style="width:160px;" src="../../Img/copyright.png"></image>
+  </view>
+</view>

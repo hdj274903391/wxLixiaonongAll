@@ -1,0 +1,32 @@
+<view class='container'>
+  <view class='top'>
+     <view bindtap='handleToOrigin'>
+       <text class='icon-origin' style='font-size:20px;'></text>
+       <text class='originRight'>{{locationAddress}}</text>
+     </view>
+    <view class='search'  bindtap='handleToSearch'>
+      <text class='icon-search' style='margin:0px 5px;font-size:18px;'></text>
+    <text style='color:#787878;font-size:12px;'>请输入商品名称</text>
+    </view>
+  </view>
+  <view class='content'>
+    <view class="kindsList">
+      <scroll-view scroll-y="scroll-y" style="height:100vh;">
+        <view class="{{kindsItemCurrent == index ? 'kindsItem1':'kindsItem'}}" bindtap='handleChangeFirstNavigataion' wx:for="{{navigationItem}}" wx:key="index"  data-index="{{index}}">
+          <view class='kindsItemContent'>{{item.productCategoryName}}</view>
+        </view>
+      </scroll-view>
+    </view>
+      <view class='secondKindsList'>
+        <image  mode='widthFix' style='width:90%;height:99px;' src="{{kindsItemImages}}" > </image>
+        <view class='secondeNavigationTitle'> {{navigationItem[kindsItemCurrent].productCategoryName}}</view>
+        
+        <view class='secondKindsContent'>
+          <view class='secondKindsItem' wx:for="{{secondNavigationList}}" wx:key="index" data-index="{{index}}" bindtap='handleToSecondNavigation'>
+            <image class='secondKindsItemImg'  src="{{imageHost + item.productCategoryImagePath}}"></image>
+            <view class='secondKindsItemName'>{{item.productCategoryName}}</view>
+          </view>
+        </view>
+      </view>
+  </view>
+</view>
